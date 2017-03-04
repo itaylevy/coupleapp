@@ -24,11 +24,11 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 //        return PageFragment.newInstance(position + 1);
 
         if (position == 0) {
-            return new ChoresFragment();
-        } else if (position == 1) {
             return new GoalsFragment();
-        } else if (position == 2) {
+        } else if (position == 1) {
             return new AchievementsFragment();
+        } else if (position == 2) {
+            return new ChoresFragment();
         } else {
             return new RewardsFragment();
         }
