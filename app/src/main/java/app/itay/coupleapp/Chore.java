@@ -5,10 +5,10 @@ package app.itay.coupleapp;
  */
 
 public class Chore {
-    String mTitle;
-    String mCoins;
-    String mCreator;
-    int mImgSrc;
+    private String mTitle;
+    private String mCoins;
+    private String mCreator;
+    private int mImgSrc;
 
     public Chore(String mTitle, String mCoins, String mCreator, int mImgSrc) {
         this.mTitle = mTitle;

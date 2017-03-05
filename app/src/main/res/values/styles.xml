@@ -24,7 +24,7 @@
         <item name="textAllCaps">true</item>
     </style>
 <style name="MyChoresCardView" >
-    <item name="android:layout_margin">10dp</item>
+    <item name="android:layout_margin">5dp</item>
     <item name="android:layout_width">match_parent</item>
     <item name="android:layout_height">150dp</item>
 </style>
