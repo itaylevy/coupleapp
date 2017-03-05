@@ -1,9 +1,14 @@
-package app.itay.coupleapp;
+package app.itay.coupleapp.adapters;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import app.itay.coupleapp.fragments.AchievementsFragment;
+import app.itay.coupleapp.fragments.ChoresFragment;
+import app.itay.coupleapp.fragments.GoalsFragment;
+import app.itay.coupleapp.fragments.RewardsFragment;
 
 /**
  * Created by itayl on 28/02/2017.
@@ -12,11 +17,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 4;
     private String tabTitles[] = new String[]{"Chores", "Goals", "Achievements", "Rewards"};
-    private Context context;
+    private Context mContext;
 
     public SimpleFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
-        this.context = context;
+        mContext = context;
     }
 
     @Override
