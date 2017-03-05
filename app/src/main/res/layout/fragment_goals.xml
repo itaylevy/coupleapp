@@ -2,12 +2,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="app.itay.coupleapp.GoalsFragment">
+    tools:context="app.itay.coupleapp.fragments.GoalsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/chore_card_view"
+        style="@style/MyChoresCardView"
+        card_view:cardCornerRadius="3dp">
+
+        <ImageView
+            android:id="@+id/chore_img_card_src"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/dishes" />
+
+        <TextView
+            android:id="@+id/txt_title_chores_card"
+            style="@style/MyChoresTitleTextAppearance"
+            android:text="Clean the dishes" />
+
+        <TextView
+            android:id="@+id/txt_subtitle_chores_card"
+            style="@style/MyChoresSubTitleTextAppearance"
+            android:text="Created by Itay" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="2dp"
+            android:src="@android:drawable/btn_star_big_on" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|bottom"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="22dp"
+            android:id="@+id/chore_card_coins"
+            android:textColor="@android:color/black" />
+
+    </android.support.v7.widget.CardView>
 
 </FrameLayout>

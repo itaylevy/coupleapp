@@ -23,4 +23,28 @@
         <item name="android:textColor">#ABA19E</item>
         <item name="textAllCaps">true</item>
     </style>
+<style name="MyChoresCardView" >
+    <item name="android:layout_margin">5dp</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">200dp</item>
+</style>
+    <style name="MyChoresTitleTextAppearance">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_marginBottom">15dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+    <style name="MyChoresSubTitleTextAppearance">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
+    </style>
+
 </resources>
