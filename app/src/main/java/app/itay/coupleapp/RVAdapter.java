@@ -22,6 +22,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
         TextView personName;
         TextView personAge;
         ImageView personPhoto;
+        TextView subTitle;
 
         PersonViewHolder(View itemView) {
             super(itemView);
@@ -29,6 +30,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
             personName = (TextView)itemView.findViewById(R.id.txt_title_chores_card);
             personAge = (TextView)itemView.findViewById(R.id.chore_card_coins);
             personPhoto = (ImageView)itemView.findViewById(R.id.chore_img_card_src);
+            subTitle=(TextView) itemView.findViewById(R.id.txt_subtitle_chores_card);
         }
     }
     RVAdapter(List<Chore> persons){
@@ -49,6 +51,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
         personViewHolder.personName.setText(persons.get(i).getmTitle());
         personViewHolder.personAge.setText(persons.get(i).getmCoins());
         personViewHolder.personPhoto.setImageResource(persons.get(i).getmImgSrc());
+        personViewHolder.subTitle.setText("Created by "+persons.get(i).getmCreator());
     }
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {

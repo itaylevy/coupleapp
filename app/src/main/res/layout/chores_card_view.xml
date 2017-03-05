@@ -12,7 +12,7 @@
         <ImageView
             android:id="@+id/chore_img_card_src"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:src="@drawable/dishes" />
 
         <TextView
