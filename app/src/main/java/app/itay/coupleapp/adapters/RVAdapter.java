@@ -3,6 +3,7 @@ package app.itay.coupleapp.adapters;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,11 +54,14 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
     @Override
     public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.chores_card_view, viewGroup, false);
+        Toolbar toolbar = (Toolbar) v.findViewById(R.id.chore_toolbar);
+        toolbar.inflateMenu(R.menu.menu_chore_card);
         return new PersonViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
+
         personViewHolder.personName.setText(mPersons.get(i).getTitle());
         personViewHolder.personAge.setText(mPersons.get(i).getCoins());
         personViewHolder.personPhoto.setImageResource(mPersons.get(i).getImgSrc());
