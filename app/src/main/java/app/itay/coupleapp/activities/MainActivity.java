@@ -1,9 +1,12 @@
-package app.itay.coupleapp;
+package app.itay.coupleapp.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+
+import app.itay.coupleapp.R;
+import app.itay.coupleapp.adapters.SimpleFragmentPagerAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this));
         // Set the adapter onto the view pager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-//        setupTabLayout(tabLayout);
+        // setupTabLayout(tabLayout);
         tabLayout.setupWithViewPager(viewPager);
     }
 }

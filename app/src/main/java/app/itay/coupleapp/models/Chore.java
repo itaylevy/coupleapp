@@ -1,4 +1,4 @@
-package app.itay.coupleapp;
+package app.itay.coupleapp.models;
 
 /**
  * Created by itayl on 04/03/2017.
@@ -17,31 +17,31 @@ public class Chore {
         this.mImgSrc = mImgSrc;
     }
 
-    public String getmTitle() {
+    public String getTitle() {
         return mTitle;
     }
 
-    public void setmTitle(String mTitle) {
+    public void setTitle(String mTitle) {
         this.mTitle = mTitle;
     }
 
-    public String getmCoins() {
+    public String getCoins() {
         return mCoins;
     }
 
-    public void setmCoins(String mCoins) {
+    public void setCoins(String mCoins) {
         this.mCoins = mCoins;
     }
 
-    public String getmCreator() {
+    public String getCreator() {
         return mCreator;
     }
 
-    public void setmCreator(String mCreator) {
+    public void setCreator(String mCreator) {
         this.mCreator = mCreator;
     }
 
-    public int getmImgSrc() {
+    public int getImgSrc() {
         return mImgSrc;
     }
 

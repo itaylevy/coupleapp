@@ -1,5 +1,6 @@
-package app.itay.coupleapp;
+package app.itay.coupleapp.adapters;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,19 +11,24 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import app.itay.coupleapp.R;
+import app.itay.coupleapp.models.Chore;
+
 /**
  * Created by itay.levy on 3/5/2017.
  */
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
 
-    List<Chore> persons;
-    public static class PersonViewHolder extends RecyclerView.ViewHolder {
-        CardView cv;
-        TextView personName;
-        TextView personAge;
-        ImageView personPhoto;
-        TextView subTitle;
+    private List<Chore> mPersons;
+    private Context mContext;
+
+    static class PersonViewHolder extends RecyclerView.ViewHolder {
+        private CardView cv;
+        private TextView personName;
+        private TextView personAge;
+        private ImageView personPhoto;
+        private TextView subTitle;
 
         PersonViewHolder(View itemView) {
             super(itemView);
@@ -33,26 +39,32 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
             subTitle=(TextView) itemView.findViewById(R.id.txt_subtitle_chores_card);
         }
     }
-    RVAdapter(List<Chore> persons){
-        this.persons = persons;
+
+    public RVAdapter(List<Chore> persons, Context context){
+        mPersons = persons;
+        mContext= context;
     }
+
     @Override
     public int getItemCount() {
-        return persons.size();
+        return mPersons.size();
     }
+
     @Override
     public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.chores_card_view, viewGroup, false);
-        PersonViewHolder pvh = new PersonViewHolder(v);
-        return pvh;
+        return new PersonViewHolder(v);
     }
+
     @Override
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
-        personViewHolder.personName.setText(persons.get(i).getmTitle());
-        personViewHolder.personAge.setText(persons.get(i).getmCoins());
-        personViewHolder.personPhoto.setImageResource(persons.get(i).getmImgSrc());
-        personViewHolder.subTitle.setText("Created by "+persons.get(i).getmCreator());
+        personViewHolder.personName.setText(mPersons.get(i).getTitle());
+        personViewHolder.personAge.setText(mPersons.get(i).getCoins());
+        personViewHolder.personPhoto.setImageResource(mPersons.get(i).getImgSrc());
+        personViewHolder.subTitle.setText(String.format(mContext.getString(R.string.chore_info_created_by),
+                mPersons.get(i).getCreator()));
     }
+
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
