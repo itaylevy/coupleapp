@@ -8,5 +8,6 @@
     <string name="new_chore_title">Add task</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="redeem">Redeem</string>
 
 </resources>
