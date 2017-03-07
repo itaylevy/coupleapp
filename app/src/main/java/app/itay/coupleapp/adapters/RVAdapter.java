@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import app.itay.coupleapp.R;
+import app.itay.coupleapp.controllers.ChoresController;
 import app.itay.coupleapp.models.Chore;
 
 /**
@@ -23,6 +24,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
 
     private List<Chore> mPersons;
     private Context mContext;
+    private ChoresController mController;
 
     static class PersonViewHolder extends RecyclerView.ViewHolder {
         private CardView cv;
@@ -41,9 +43,10 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
         }
     }
 
-    public RVAdapter(List<Chore> persons, Context context){
+    public RVAdapter(List<Chore> persons, Context context, ChoresController controller){
         mPersons = persons;
         mContext= context;
+        mController = controller;
     }
 
     @Override
@@ -52,10 +55,18 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
     }
 
     @Override
-    public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+    public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, final int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.chores_card_view, viewGroup, false);
         Toolbar toolbar = (Toolbar) v.findViewById(R.id.chore_toolbar);
         toolbar.inflateMenu(R.menu.menu_chore_card);
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mController.startChoreActivityEdit(mPersons.get(i).getTitle());
+            }
+        });
+
         return new PersonViewHolder(v);
     }
 

@@ -2,12 +2,14 @@ package app.itay.coupleapp.fragments;
 
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import app.itay.coupleapp.R;
+import app.itay.coupleapp.controllers.ChoresController;
 
 
 /**
@@ -15,17 +17,32 @@ import app.itay.coupleapp.R;
  */
 public class RewardsFragment extends Fragment {
 
+    private ChoresController mController;
 
-    public RewardsFragment() {
-        // Required empty public constructor
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        try {
+            mController = (ChoresController) getActivity();
+        } catch (ClassCastException e) {
+            throw new ClassCastException(getActivity().toString() + " must implement ChoresController");
+        }
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rewards, container, false);
+        View view = inflater.inflate(R.layout.fragment_rewards, container, false);
+
+        FloatingActionButton addChoreButton = (FloatingActionButton) view.findViewById(R.id.fab_new_task);
+        addChoreButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                mController.startChoreActivityReward();
+            }
+        });
+
+        return view;
     }
 
 }
