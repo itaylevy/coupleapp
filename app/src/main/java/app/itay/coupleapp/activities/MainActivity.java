@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
     @Override
     public void startChoreActivityReward() {
         Intent intent = new Intent(this, ChoreActivity.class);
-        intent.putExtra("tag", "edit");
+        intent.putExtra("tag", "create");
         intent.putExtra("title", "Add new reward");
         intent.putExtra("menu", R.menu.menu_create_chore_card);
         startActivity(intent);   }
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
     @Override
     public void startChoreActivityGoal() {
         Intent intent = new Intent(this, ChoreActivity.class);
-        intent.putExtra("tag", "edit");
+        intent.putExtra("tag", "create");
         intent.putExtra("title", "Add new Goal");
         intent.putExtra("menu", R.menu.menu_create_chore_card);
         startActivity(intent);   }
