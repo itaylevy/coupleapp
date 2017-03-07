@@ -22,7 +22,7 @@
 
     <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">#ABA19E</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="textAllCaps">true</item>
     </style>
 
