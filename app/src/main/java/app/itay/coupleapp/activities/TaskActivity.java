@@ -44,8 +44,6 @@ public class TaskActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((EditText)findViewById(R.id.edit_title)).setHint(getIntent().getStringExtra(Constants.TITLE));
 
-        ((EditText)findViewById(R.id.edit_title)).setHint(getString(R.string.new_chore_title));
-
         mTaskImage = (ImageView) findViewById(R.id.img_task_picture);
 
         mTaskImage.setOnClickListener(new View.OnClickListener() {
