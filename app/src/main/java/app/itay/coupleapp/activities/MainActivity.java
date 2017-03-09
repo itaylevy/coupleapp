@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
     public void startTaskActivityCreateReward() {
         Intent intent = new Intent(this, TaskActivity.class);
         intent.putExtra(Constants.TAG, Constants.TAG_CREATE_REWARD);
-        intent.putExtra("title", "Create new reward");
+        intent.putExtra(Constants.TITLE, "Create new reward");
         intent.putExtra("menu", R.menu.menu_create_task);
         startActivity(intent);
     }

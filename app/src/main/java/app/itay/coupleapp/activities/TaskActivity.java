@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TimePicker;
 
@@ -39,8 +40,11 @@ public class TaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(getIntent().getStringExtra("title"));
+        ((EditText)findViewById(R.id.edit_title)).setHint(getIntent().getStringExtra(Constants.TITLE));
+
+        ((EditText)findViewById(R.id.edit_title)).setHint(getString(R.string.new_chore_title));
 
         mTaskImage = (ImageView) findViewById(R.id.img_task_picture);
 

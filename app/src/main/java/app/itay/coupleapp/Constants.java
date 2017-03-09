@@ -12,4 +12,5 @@ public class Constants {
     public static final String TAG_EDIT_GOAL = "edit_goal";
     public static final String TAG_CREATE_REWARD = "create_reward";
     public static final String TAG_EDIT_REWARD = "edit_reward";
+    public static final String TITLE= "title";
 }
