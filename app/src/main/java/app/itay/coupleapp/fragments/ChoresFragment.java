@@ -57,6 +57,9 @@ public class ChoresFragment extends Fragment {
         chores.add(new Chore("Take out the garbage", "20", "Shiran", R.drawable.trash));
         chores.add(new Chore("Do laundry", "250", "Shiran", R.drawable.laundry));
         chores.add(new Chore("Cook", "250", "Shiran", R.drawable.cook));
+        if (mController.getNewChore() != null) {
+            chores.add(mController.getNewChore());
+        }
         RVAdapter adapter = new RVAdapter(chores, getContext(), mController);
         rv.setAdapter(adapter);
         return view;

@@ -13,4 +13,6 @@ public class Constants {
     public static final String TAG_CREATE_REWARD = "create_reward";
     public static final String TAG_EDIT_REWARD = "edit_reward";
     public static final String TITLE= "title";
+    public static final String NEW_CHORE = "new_chore";
+    public static final String CURRENT_USER = "user";
 }

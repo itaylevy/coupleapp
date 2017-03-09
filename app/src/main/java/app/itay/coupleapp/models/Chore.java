@@ -1,10 +1,16 @@
 package app.itay.coupleapp.models;
 
+import android.net.Uri;
+
+import java.io.Serializable;
+
 /**
  * Created by itayl on 04/03/2017.
  */
 
-public class Chore {
+public class Chore implements Serializable {
+
+    private String mImgPath;
     private String mTitle;
     private String mCoins;
     private String mCreator;
@@ -15,6 +21,14 @@ public class Chore {
         this.mCoins = mCoins;
         this.mCreator = mCreator;
         this.mImgSrc = mImgSrc;
+    }
+
+
+    public Chore(String mTitle, String mCoins, String mCreator, String mImgPath) {
+        this.mTitle = mTitle;
+        this.mCoins = mCoins;
+        this.mCreator = mCreator;
+        this.mImgPath = mImgPath;
     }
 
     public String getTitle() {
@@ -47,5 +61,9 @@ public class Chore {
 
     public void setmImgSrc(int mImgSrc) {
         this.mImgSrc = mImgSrc;
+    }
+
+    public String getImgPath() {
+        return mImgPath;
     }
 }

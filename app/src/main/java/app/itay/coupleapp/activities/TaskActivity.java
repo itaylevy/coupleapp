@@ -2,7 +2,9 @@ package app.itay.coupleapp.activities;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
@@ -24,11 +27,13 @@ import java.util.Calendar;
 
 import app.itay.coupleapp.Constants;
 import app.itay.coupleapp.R;
+import app.itay.coupleapp.controllers.MainMenuController;
+import app.itay.coupleapp.models.Chore;
 
-public class TaskActivity extends AppCompatActivity {
+public class TaskActivity extends AppCompatActivity implements MainMenuController {
 
     private static final int SELECT_PICTURE = 1;
-    private String mSelectedImagePath;
+    private Uri mSelectedImagePath;
     private ImageView mTaskImage;
     private Calendar mCalendar = Calendar.getInstance();
 
@@ -118,6 +123,17 @@ public class TaskActivity extends AppCompatActivity {
             case android.R.id.home:
                 onBackPressed();
                 return true;
+            case R.id.save:
+
+                String user = getPreferences(Context.MODE_PRIVATE).getString(Constants.CURRENT_USER, "");
+                String coins = ((Spinner)findViewById(R.id.spinner_reward)).getSelectedItem().toString();
+                String title = ((EditText)findViewById(R.id.edit_title)).getText().toString();
+                if (title.equals("")) {
+                    ((EditText)findViewById(R.id.edit_title)).setError("This field is required");
+                } else if (mSelectedImagePath != null){
+                    startMainActivityChoreAdded(new Chore(title, coins, user, mSelectedImagePath.toString()));
+                }
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -126,38 +142,18 @@ public class TaskActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
-                Uri selectedImageUri = data.getData();
-                mSelectedImagePath = getPath(selectedImageUri);
-                mTaskImage.setImageDrawable(Drawable.createFromPath(mSelectedImagePath));
+                if(resultCode == RESULT_CANCELED)
+                {
+                    // action cancelled
+                }
+                else if(resultCode == RESULT_OK)
+                {
+                    mSelectedImagePath = data.getData();
+                    ((ImageView)findViewById(R.id.img_task_picture)).setImageURI(mSelectedImagePath);
+                }
             }
         }
     }
-
-    /**
-     * helper to retrieve the path of an image URI
-     */
-    public String getPath(Uri uri) {
-        // just some safety built in
-        if( uri == null ) {
-            // TODO perform some logging or show user feedback
-            return null;
-        }
-        // try to retrieve the image from the media store first
-        // this will only work for images selected from gallery
-        String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = managedQuery(uri, projection, null, null, null);
-        if( cursor != null ){
-            int column_index = cursor
-                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            String path = cursor.getString(column_index);
-            cursor.close();
-            return path;
-        }
-        // this is our fallback here
-        return uri.getPath();
-    }
-
 
     DatePickerDialog.OnDateSetListener dateListenr = new DatePickerDialog.OnDateSetListener() {
 
@@ -189,5 +185,12 @@ public class TaskActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat);
 
         mDeadlineButton.setText(sdf.format(mCalendar.getTime()));
+    }
+
+    @Override
+    public void startMainActivityChoreAdded(Chore chore) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(Constants.NEW_CHORE, chore);
+        startActivity(intent);
     }
 }
