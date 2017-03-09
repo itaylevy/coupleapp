@@ -19,5 +19,6 @@
     <string name="save">Save</string>
     <string name="redeem">Redeem</string>
     <string name="enter_cost">Enter cost:</string>
+    <string name="enter_reward">Assign reward for this task: </string>
 
 </resources>

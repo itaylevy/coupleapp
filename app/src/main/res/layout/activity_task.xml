@@ -35,10 +35,10 @@
 
                 <EditText
                     android:id="@+id/edit_title"
-                    android:layout_marginBottom="32dp"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
+                    android:paddingBottom="32dp"
                     android:textSize="22sp" />
 
             </RelativeLayout>
@@ -68,45 +68,127 @@
                 android:src="@drawable/dishes"
                 app:layout_collapseMode="parallax" />
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/divider"
+                android:layout_marginBottom="@dimen/divider_margin"
+                android:layout_marginTop="@dimen/divider_margin"
+                android:background="@color/colorLightGray" />
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:id="@+id/layout_reward_chore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <Spinner
-                    android:id="@+id/spinner_reward"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/rewards">
+                    android:orientation="horizontal">
 
-                </Spinner>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_star_rate_black_18dp" />
 
-                <TextView
-                    android:id="@+id/text_cost"
-                    android:text="@string/enter_cost"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/rewards"
+                        android:text="@string/enter_reward"
+                        android:visibility="gone" />
+
+                    <Spinner
+                        android:id="@+id/spinner_reward"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/rewards">
+
+                    </Spinner>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/divider"
+                    android:layout_marginBottom="@dimen/divider_margin"
+                    android:layout_marginTop="@dimen/divider_margin"
+                    android:background="@color/colorLightGray" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_reward_goal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/rewards"
-                    android:visibility="gone">
+                    android:orientation="horizontal">
 
-                </TextView>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_stars_black_24dp" />
 
-                <EditText
-                    android:id="@+id/edit_cost"
-                    android:hint="How much will this cost"
-                    android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/rewards"
+                        android:text="@string/enter_cost" />
+
+                    <EditText
+                        android:id="@+id/edit_cost"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:entries="@array/rewards"
+                        android:hint="How much will this cost"
+                        android:inputType="number"
+                        android:visibility="gone">
+
+                    </EditText>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/divider"
+                    android:layout_marginBottom="@dimen/divider_margin"
+                    android:layout_marginTop="@dimen/divider_margin"
+                    android:background="@color/colorLightGray" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:entries="@array/rewards"
-                    android:inputType="number"
-                    android:visibility="gone">
+                    android:orientation="horizontal">
 
-                </EditText>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_access_time_black_24dp" />
 
-                <Button
-                    android:id="@+id/button_deadline"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Set deadline" />
+                    <Button
+                        android:id="@+id/button_deadline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Set deadline" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/divider"
+                    android:layout_marginBottom="@dimen/divider_margin"
+                    android:layout_marginTop="@dimen/divider_margin"
+                    android:background="@color/colorLightGray" />
+
             </LinearLayout>
         </LinearLayout>
 

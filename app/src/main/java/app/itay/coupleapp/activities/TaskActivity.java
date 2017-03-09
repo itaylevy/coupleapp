@@ -59,39 +59,34 @@ public class TaskActivity extends AppCompatActivity {
 
         switch (getIntent().getStringExtra(Constants.TAG)) {
             case Constants.TAG_CREATE_CHORE:
-                findViewById(R.id.spinner_reward).setVisibility(View.VISIBLE);
-                findViewById(R.id.button_deadline).setVisibility(View.VISIBLE);
-                findViewById(R.id.edit_cost).setVisibility(View.GONE);
-                findViewById(R.id.text_cost).setVisibility(View.GONE);
+                findViewById(R.id.layout_reward_chore).setVisibility(View.VISIBLE);
+                findViewById(R.id.layout_deadline).setVisibility(View.VISIBLE);
+                findViewById(R.id.layout_reward_goal).setVisibility(View.GONE);
                 break;
             case Constants.TAG_CREATE_GOAL:
-                findViewById(R.id.spinner_reward).setVisibility(View.GONE);
-                findViewById(R.id.button_deadline).setVisibility(View.GONE);
-                findViewById(R.id.edit_cost).setVisibility(View.GONE);
-                findViewById(R.id.text_cost).setVisibility(View.GONE);
+                findViewById(R.id.layout_reward_chore).setVisibility(View.GONE);
+                findViewById(R.id.layout_deadline).setVisibility(View.GONE);
+                findViewById(R.id.layout_reward_goal).setVisibility(View.VISIBLE);
                 break;
             case  Constants.TAG_CREATE_REWARD:
-                findViewById(R.id.spinner_reward).setVisibility(View.GONE);
-                findViewById(R.id.button_deadline).setVisibility(View.GONE);
-                findViewById(R.id.edit_cost).setVisibility(View.VISIBLE);
-                findViewById(R.id.text_cost).setVisibility(View.VISIBLE);
+                findViewById(R.id.layout_reward_chore).setVisibility(View.GONE);
+                findViewById(R.id.layout_deadline).setVisibility(View.GONE);
+                findViewById(R.id.layout_reward_goal).setVisibility(View.VISIBLE);
                 break;
             case Constants.TAG_EDIT_CHORE:
-                findViewById(R.id.spinner_reward).setVisibility(View.VISIBLE);
-                findViewById(R.id.button_deadline).setVisibility(View.VISIBLE);
-                findViewById(R.id.edit_cost).setVisibility(View.GONE);
-                findViewById(R.id.text_cost).setVisibility(View.GONE);
+                findViewById(R.id.layout_reward_chore).setVisibility(View.VISIBLE);
+                findViewById(R.id.layout_deadline).setVisibility(View.VISIBLE);
+                findViewById(R.id.layout_reward_goal).setVisibility(View.GONE);
                 break;
             case Constants.TAG_EDIT_GOAL:
-                findViewById(R.id.spinner_reward).setVisibility(View.GONE);
-                findViewById(R.id.button_deadline).setVisibility(View.GONE);
-                findViewById(R.id.edit_cost).setVisibility(View.GONE);
+                findViewById(R.id.layout_reward_chore).setVisibility(View.GONE);
+                findViewById(R.id.layout_deadline).setVisibility(View.GONE);
+                findViewById(R.id.layout_reward_goal).setVisibility(View.VISIBLE);
                 break;
             case Constants.TAG_EDIT_REWARD:
-                findViewById(R.id.spinner_reward).setVisibility(View.VISIBLE);
-                findViewById(R.id.button_deadline).setVisibility(View.VISIBLE);
-                findViewById(R.id.edit_cost).setVisibility(View.GONE);
-                findViewById(R.id.text_cost).setVisibility(View.GONE);
+                findViewById(R.id.layout_reward_chore).setVisibility(View.GONE);
+                findViewById(R.id.layout_deadline).setVisibility(View.GONE);
+                findViewById(R.id.layout_reward_goal).setVisibility(View.VISIBLE);
                 break;
         }
 
