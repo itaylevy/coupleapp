@@ -1,6 +1,8 @@
 package app.itay.coupleapp.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -16,16 +18,22 @@ import app.itay.coupleapp.Constants;
 import app.itay.coupleapp.R;
 import app.itay.coupleapp.adapters.SimpleFragmentPagerAdapter;
 import app.itay.coupleapp.controllers.ChoresController;
-
+import app.itay.coupleapp.models.Chore;
 
 
 public class MainActivity extends AppCompatActivity implements ChoresController {
 
-    TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(Constants.CURRENT_USER, "Anonymous");
+        editor.commit();
+
+
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 //
 
@@ -109,6 +117,11 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
         intent.putExtra("title", taskName);
         intent.putExtra("menu", R.menu.menu_edit_task);
         startActivity(intent);
+    }
+
+    @Override
+    public Chore getNewChore() {
+       return (Chore) getIntent().getSerializableExtra(Constants.NEW_CHORE);
     }
 
     private void setupTabIcons() {
