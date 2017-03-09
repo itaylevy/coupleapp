@@ -6,4 +6,6 @@
     <color name="whiteColor">#FFFFFF</color>
     <color name="darkYellow">#427bab</color>
     <color name="colorLightGray">#EFEFF4</color>
+    <color name="grayForOverlay">#9E9E9E</color>
+    <color name="grayForOverlay1">#B5B3B3</color>
 </resources>
