@@ -16,7 +16,7 @@ import app.itay.coupleapp.fragments.RewardsFragment;
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 4;
-    private String tabTitles[] = new String[]{"Chores", "Goals", "Achievements", "Rewards"};
+    private String tabTitles[] = new String[]{"Chores", "Goals", "Badges", "Rewards"};
     private Context mContext;
 
     public SimpleFragmentPagerAdapter(FragmentManager fm, Context context) {

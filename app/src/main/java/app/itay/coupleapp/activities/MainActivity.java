@@ -1,8 +1,14 @@
 package app.itay.coupleapp.activities;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -11,21 +17,48 @@ import app.itay.coupleapp.R;
 import app.itay.coupleapp.adapters.SimpleFragmentPagerAdapter;
 import app.itay.coupleapp.controllers.ChoresController;
 
+
+
 public class MainActivity extends AppCompatActivity implements ChoresController {
 
+    TabLayout tabLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+//
 
         // Create an adapter that knows which fragment should be shown on each page
         viewPager.setAdapter(new SimpleFragmentPagerAdapter(getSupportFragmentManager(),
                 MainActivity.this));
         // Set the adapter onto the view pager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-        // setupTabLayout(tabLayout);
+
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_favorite_black_24dp);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_list_black_24dp);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_security_black_24dp);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_trophy);
+
+        ColorStateList colors;
+        if (Build.VERSION.SDK_INT >= 23) {
+            colors = getResources().getColorStateList(R.color.tab_icon, getTheme());
+        }
+        else {
+            colors = getResources().getColorStateList(R.color.tab_icon);
+        }
+
+        for (int i = 0; i < tabLayout.getTabCount(); i++) {
+            TabLayout.Tab tab = tabLayout.getTabAt(i);
+            Drawable icon = tab.getIcon();
+
+            if (icon != null) {
+                icon = DrawableCompat.wrap(icon);
+                DrawableCompat.setTintList(icon, colors);
+            }
+        }
+
     }
 
     @Override
@@ -80,5 +113,10 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
         intent.putExtra("title", taskName);
         intent.putExtra("menu", R.menu.menu_edit_task);
         startActivity(intent);
+    }
+
+    private void setupTabIcons() {
+
+
     }
 }
