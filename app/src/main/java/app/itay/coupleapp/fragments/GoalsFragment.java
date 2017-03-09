@@ -38,7 +38,7 @@ public class GoalsFragment extends Fragment {
         FloatingActionButton addChoreButton = (FloatingActionButton) view.findViewById(R.id.fab_new_task);
         addChoreButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                mController.startChoreActivityGoal();
+                mController.startTaskActivityCreateGoal();
             }
         });
         return view;

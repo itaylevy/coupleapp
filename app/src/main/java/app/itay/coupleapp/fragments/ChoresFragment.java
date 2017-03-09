@@ -44,7 +44,7 @@ public class ChoresFragment extends Fragment {
         FloatingActionButton addChoreButton = (FloatingActionButton) view.findViewById(R.id.fab_new_task);
         addChoreButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                mController.startChoreActivityCreate();
+                mController.startTaskActivityChoreCreate();
             }
         });
 

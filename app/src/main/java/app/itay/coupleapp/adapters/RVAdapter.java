@@ -58,12 +58,12 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
     public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, final int i) {
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.chores_card_view, viewGroup, false);
         Toolbar toolbar = (Toolbar) v.findViewById(R.id.chore_toolbar);
-        toolbar.inflateMenu(R.menu.menu_chore_card);
+        toolbar.inflateMenu(R.menu.menu_task_card);
 
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mController.startChoreActivityEdit(mPersons.get(i).getTitle());
+                mController.startTaskActivityChoreEdit(mPersons.get(i).getTitle());
             }
         });
 

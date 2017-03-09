@@ -5,10 +5,12 @@ package app.itay.coupleapp.controllers;
  */
 
 public interface ChoresController {
-    void startChoreActivityCreate();
-    void startChoreActivityEdit(String taskName);
-    void startChoreActivityReward();
-    void startChoreActivityGoal();
+    void startTaskActivityChoreCreate();
+    void startTaskActivityChoreEdit(String taskName);
+    void startTaskActivityCreateReward();
+    void startTaskActivityEditReward(String taskName);
+    void startTaskActivityCreateGoal();
+    void startTaskActivityEditGoal(String taskName);
 
 
 }
