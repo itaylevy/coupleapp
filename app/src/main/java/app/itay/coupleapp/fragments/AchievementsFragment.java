@@ -20,8 +20,18 @@ import app.itay.coupleapp.R;
  */
 public class AchievementsFragment extends Fragment {
 
-    private ImageView gray;
-    private TextView grayText;
+    private ImageView romanticImage;
+    private TextView romanticText;
+    private ImageView spontaneousImage;
+    private TextView spontaneousText;
+    private ImageView supportiveImage;
+    private TextView supportiveText;
+    private ImageView attentiveImage;
+    private TextView attentiveText;
+    private ImageView sexyImage;
+    private TextView sexyText;
+    private ImageView flatteringImage;
+    private TextView flatteringText;
     private View v;
     public AchievementsFragment() {
         // Required empty public constructor
@@ -33,20 +43,21 @@ public class AchievementsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v=inflater.inflate(R.layout.fragment_achievements, container, false);
-        gray=(ImageView) v.findViewById(R.id.img_gray);
-
-grayText=(TextView) v.findViewById(R.id.gray_text);
+        romanticImage=(ImageView) v.findViewById(R.id.img_romantic_gray);
+        romanticText=(TextView) v.findViewById(R.id.romantic_text);
         ColorMatrix matrix = new ColorMatrix();
         matrix.setSaturation(0);
         ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
-        gray.setColorFilter(filter);
-        gray.setOnClickListener(new View.OnClickListener() {
+        romanticImage.setColorFilter(filter);
+        romanticImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                gray.clearColorFilter();
-                grayText.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                romanticImage.clearColorFilter();
+                romanticText.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
             }
         });
+        spontaneousImage=(ImageView) v.findViewById(R.id.img_spontaneous_gray);
+
 
 
         return v;

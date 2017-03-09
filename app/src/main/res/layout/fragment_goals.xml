@@ -5,45 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="app.itay.coupleapp.fragments.GoalsFragment">
 
-    <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/chore_card_view"
-        style="@style/MyChoresCardView"
-        card_view:cardCornerRadius="3dp">
-
-        <ImageView
-            android:id="@+id/chore_img_card_src"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@drawable/dishes" />
-
-        <TextView
-            android:id="@+id/txt_title_chores_card"
-            style="@style/MyChoresTitleTextAppearance"
-            android:text="Clean the dishes" />
-
-        <TextView
-            android:id="@+id/txt_subtitle_chores_card"
-            style="@style/MyChoresSubTitleTextAppearance"
-            android:text="Created by Itay" />
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="right|bottom"
-            android:layout_marginBottom="15dp"
-            android:layout_marginRight="2dp"
-            android:src="@android:drawable/btn_star_big_on" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|bottom"
-            android:layout_marginBottom="15dp"
-            android:layout_marginRight="22dp"
-            android:id="@+id/chore_card_coins"
-            android:textColor="@android:color/black" />
-
-    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_goals"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_new_task"
@@ -53,7 +18,8 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_input_add"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:tint="@color/darkYellow"/>
 
 
 </FrameLayout>

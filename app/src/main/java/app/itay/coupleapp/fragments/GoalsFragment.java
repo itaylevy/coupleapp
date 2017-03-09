@@ -4,12 +4,18 @@ package app.itay.coupleapp.fragments;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.ArrayList;
+
 import app.itay.coupleapp.R;
+import app.itay.coupleapp.adapters.GoalsRVAdapter;
 import app.itay.coupleapp.controllers.ChoresController;
+import app.itay.coupleapp.models.Goal;
 
 
 /**
@@ -41,6 +47,17 @@ public class GoalsFragment extends Fragment {
                 mController.startTaskActivityCreateGoal();
             }
         });
+        final ArrayList<Goal> goals = new ArrayList<>();
+        RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_goals);
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        rv.setLayoutManager(llm);
+
+        goals.add(new Goal("Be Romantic", "100", "Shiran", R.drawable.dishes));
+        goals.add(new Goal("Be Spontaneous", "300", "Shiran", R.drawable.trash));
+        goals.add(new Goal("Be Supportive", "250", "Shiran", R.drawable.laundry));
+        goals.add(new Goal("Be Attentive", "350", "Shiran", R.drawable.cook));
+        GoalsRVAdapter adapter = new GoalsRVAdapter(goals, getContext(), mController);
+        rv.setAdapter(adapter);
         return view;
     }
 
