@@ -53,10 +53,10 @@ public class ChoresFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
 
-        chores.add(new Chore("Clean the dishes", "100", "Itay", R.drawable.dishes));
-        chores.add(new Chore("Take out the garbage", "20", "Shiran", R.drawable.trash));
-        chores.add(new Chore("Do laundry", "250", "Shiran", R.drawable.laundry));
-        chores.add(new Chore("Cook", "250", "Shiran", R.drawable.cook));
+        chores.add(new Chore("Clean the dishes", "100", "Itay", "", R.drawable.dishes));
+        chores.add(new Chore("Take out the garbage", "20", "Shiran", "", R.drawable.trash));
+        chores.add(new Chore("Do laundry", "250", "Shiran", "", R.drawable.laundry));
+        chores.add(new Chore("Cook", "250", "Shiran", "",  R.drawable.cook));
         if (mController.getNewChore() != null) {
             chores.add(mController.getNewChore());
         }
