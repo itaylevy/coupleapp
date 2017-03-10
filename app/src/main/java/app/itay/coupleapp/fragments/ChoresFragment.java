@@ -69,10 +69,10 @@ public class ChoresFragment extends Fragment {
 //                }
 //            }
 //        });
-        chores.add(new Chore("Clean the dishes", "100", "2", R.drawable.dishes));
-        chores.add(new Chore("Take out the garbage", "20", "3", R.drawable.trash));
-        chores.add(new Chore("Do laundry", "250", "5", R.drawable.laundry));
-        chores.add(new Chore("Cook", "250", "2", R.drawable.cook));
+        chores.add(new Chore("Clean the dishes", "100", "itay","2", R.drawable.dishes));
+        chores.add(new Chore("Take out the garbage","20","itay", "3", R.drawable.trash));
+        chores.add(new Chore("Do laundry", "250","itay", "5", R.drawable.laundry));
+        chores.add(new Chore("Cook", "250", "itay","2", R.drawable.cook));
         if (mController.getNewChore() != null) {
             chores.add(mController.getNewChore());
         }

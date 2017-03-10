@@ -1,6 +1,7 @@
 package app.itay.coupleapp.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
@@ -77,19 +78,16 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
         personViewHolder.coins.setText(mChores.get(i).getCoins());
         personViewHolder.subTitle.setText(String.format(mContext.getString(R.string.chore_info_created_by),
                 mChores.get(i).getCreator()));
-    @Override
-    public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
 
-        personViewHolder.personName.setText(mPersons.get(i).getTitle());
-        personViewHolder.personAge.setText(mPersons.get(i).getCoins());
-        personViewHolder.subTitle.setText(mPersons.get(i).getCreator()+" hours left");
 
-        final BitmapDrawable bitmapDrawable = (BitmapDrawable) personViewHolder.personPhoto.getDrawable();
+        final BitmapDrawable bitmapDrawable = (BitmapDrawable) personViewHolder.picture.getDrawable();
 
         Palette.generateAsync(bitmapDrawable.getBitmap(), new Palette.PaletteAsyncListener() {
             public void onGenerated(Palette palette) {
-                int bgColor = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
-//                personViewHolder.personPhoto.setBackgroundColor(bgColor);
+                Palette.Swatch vibrantSwatch = palette.getVibrantSwatch();
+                if (vibrantSwatch != null) {
+                    mContext.getResources().getDrawable(R.drawable.rectangle_background).setTint(vibrantSwatch.getPopulation());
+                }
             }
         });
 //        Palette.from(bitmapDrawable.getBitmap()).generate(new Palette.PaletteAsyncListener() {
