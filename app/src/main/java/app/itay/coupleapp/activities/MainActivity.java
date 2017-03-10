@@ -21,6 +21,7 @@ import app.itay.coupleapp.models.Goal;
 
 
 public class MainActivity extends AppCompatActivity implements ChoresController {
+    private SimpleFragmentPagerAdapter simpleFragmentPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +33,13 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
         editor.putString(Constants.CURRENT_USER, "Anonymous");
         editor.commit();
 
-
+        simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),
+                MainActivity.this);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 //
 
         // Create an adapter that knows which fragment should be shown on each page
-        viewPager.setAdapter(new SimpleFragmentPagerAdapter(getSupportFragmentManager(),
-                MainActivity.this));
+        viewPager.setAdapter(simpleFragmentPagerAdapter);
         // Set the adapter onto the view pager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 

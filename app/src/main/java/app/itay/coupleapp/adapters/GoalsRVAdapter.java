@@ -19,11 +19,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.List;
 
 import app.itay.coupleapp.Constants;
 import app.itay.coupleapp.R;
 import app.itay.coupleapp.controllers.ChoresController;
+import app.itay.coupleapp.events.GoalRedeemedEvent;
 import app.itay.coupleapp.models.Goal;
 
 /**
@@ -131,9 +134,8 @@ public class GoalsRVAdapter extends RecyclerView.Adapter<GoalsRVAdapter.GoalView
                         notifyDataSetChanged();
                         break;
                     case R.id.redeem:
-
-//
                         dialog.show();
+                        EventBus.getDefault().post(new GoalRedeemedEvent());
                         mController.updateCoinsStatus(mGoals.get(i).getCoins());
                         mGoals.remove(i);
                         notifyItemRemoved(i);

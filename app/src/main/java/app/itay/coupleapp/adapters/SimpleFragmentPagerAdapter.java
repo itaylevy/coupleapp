@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
 
 import app.itay.coupleapp.fragments.AchievementsFragment;
 import app.itay.coupleapp.fragments.ChoresFragment;
@@ -15,6 +16,7 @@ import app.itay.coupleapp.fragments.RewardsFragment;
  */
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
+    private static final String TAG = "SimpleFragmentPagerAdap";
     final int PAGE_COUNT = 4;
     private String tabTitles[] = new String[]{"Chores", "Goals", "Badges", "Rewards"};
     private Context mContext;

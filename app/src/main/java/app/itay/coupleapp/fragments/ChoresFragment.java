@@ -69,17 +69,6 @@ public class ChoresFragment extends Fragment {
 
 //        LinearLayoutManager llm = new LinearLayoutManager(getContext());
 //        rv.setLayoutManager(llm);
-//        Bitmap image = BitmapFactory.decodeResource(getResources(),
-//                R.drawable.dishes);
-//        Palette.from(image).generate(new Palette.PaletteAsyncListener() {
-//            @Override
-//            public void onGenerated(Palette palette) {
-//                Palette.Swatch vibrantSwatch = palette.getVibrantSwatch();
-//                if (vibrantSwatch != null) {
-//                    getResources().getDrawable(R.drawable.rectangle_background).setTint(vibrantSwatch.getPopulation());
-//                }
-//            }
-//        });
         chores.add(new Chore("Clean the dishes", "100", "itay", "2", R.drawable.dishes));
         chores.add(new Chore("Take out the garbage", "20", "itay", "3", R.drawable.trash));
         chores.add(new Chore("Do laundry", "250", "itay", "5", R.drawable.laundry));

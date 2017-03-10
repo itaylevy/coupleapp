@@ -12,7 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import app.itay.coupleapp.R;
+import app.itay.coupleapp.events.GoalRedeemedEvent;
 
 
 /**
@@ -32,7 +36,17 @@ public class AchievementsFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -95,5 +109,15 @@ public class AchievementsFragment extends Fragment {
 
         return v;
     }
+    @Subscribe
+    public void onMessageEvent(GoalRedeemedEvent goalRedeemedEvent)
+    {
+        romanticImage.clearColorFilter();
+    }
+
 
 }
+
+
+
+
