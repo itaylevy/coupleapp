@@ -20,5 +20,7 @@
     <string name="redeem">Redeem</string>
     <string name="enter_cost">Enter cost:</string>
     <string name="enter_reward">Assign reward for this task: </string>
+    <string name="set_deadline">Set deadline</string>
+    <string name="remove">Remove</string>
 
 </resources>

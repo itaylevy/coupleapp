@@ -13,6 +13,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import app.itay.coupleapp.Constants;
 import app.itay.coupleapp.R;
@@ -28,8 +29,8 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
+        SharedPreferences prefs = getSharedPreferences(Constants.PREFS_FILE, MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
         editor.putString(Constants.CURRENT_USER, "Anonymous");
         editor.commit();
 
@@ -78,10 +79,10 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
     }
 
     @Override
-    public void startTaskActivityChoreEdit(String taskName) {
+    public void startTaskActivityChoreEdit(Chore chore) {
         Intent intent = new Intent(this, TaskActivity.class);
         intent.putExtra(Constants.TAG, Constants.TAG_EDIT_CHORE);
-        intent.putExtra("title", taskName);
+        intent.putExtra(Constants.CHORE, chore);
         intent.putExtra("menu", R.menu.menu_edit_task);
         startActivity(intent);
     }
@@ -125,5 +126,15 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
     @Override
     public Chore getNewChore() {
        return (Chore) getIntent().getSerializableExtra(Constants.NEW_CHORE);
+    }
+
+    @Override
+    public void updateCoinsStatus(String coins) {
+        Toast.makeText(this, "Congtart! You received " + coins + " coins!", Toast.LENGTH_LONG).show();
+    }
+
+    private void setupTabIcons() {
+
+
     }
 }

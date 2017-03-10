@@ -15,8 +15,9 @@ public class Chore implements Serializable {
     private String mCoins;
     private String mCreator;
     private int mImgSrc;
+    private String mDeadline;
 
-    public Chore(String mTitle, String mCoins, String mCreator, int mImgSrc) {
+    public Chore(String mTitle, String mCoins, String mCreator, String mDeadline, int mImgSrc) {
         this.mTitle = mTitle;
         this.mCoins = mCoins;
         this.mCreator = mCreator;
@@ -24,7 +25,7 @@ public class Chore implements Serializable {
     }
 
 
-    public Chore(String mTitle, String mCoins, String mCreator, String mImgPath) {
+    public Chore(String mTitle, String mCoins, String mCreator, String mDeadline, String mImgPath) {
         this.mTitle = mTitle;
         this.mCoins = mCoins;
         this.mCreator = mCreator;
@@ -65,5 +66,9 @@ public class Chore implements Serializable {
 
     public String getImgPath() {
         return mImgPath;
+    }
+
+    public String getDeadline() {
+        return mDeadline;
     }
 }

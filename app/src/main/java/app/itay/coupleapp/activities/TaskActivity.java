@@ -20,6 +20,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
@@ -47,6 +48,7 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         ((EditText)findViewById(R.id.edit_title)).setHint(getIntent().getStringExtra(Constants.TITLE));
 
         mTaskImage = (ImageView) findViewById(R.id.img_task_picture);
@@ -64,6 +66,7 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
 
         switch (getIntent().getStringExtra(Constants.TAG)) {
             case Constants.TAG_CREATE_CHORE:
+                mTaskImage.setImageResource(R.drawable.new_task);
                 findViewById(R.id.layout_reward_chore).setVisibility(View.VISIBLE);
                 findViewById(R.id.layout_deadline).setVisibility(View.VISIBLE);
                 findViewById(R.id.layout_reward_goal).setVisibility(View.GONE);
@@ -79,6 +82,28 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
                 findViewById(R.id.layout_reward_goal).setVisibility(View.VISIBLE);
                 break;
             case Constants.TAG_EDIT_CHORE:
+                Chore chore = (Chore) getIntent().getSerializableExtra(Constants.CHORE);
+                ((EditText)findViewById(R.id.edit_title)).setHint(chore.getTitle());
+                findViewById(R.id.text_spinner_reward).setVisibility(View.VISIBLE);
+                findViewById(R.id.spinner_reward).setVisibility(View.GONE);
+                ((TextView)findViewById(R.id.text_spinner_reward)).setText(chore.getCoins());
+                findViewById(R.id.text_spinner_reward).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        findViewById(R.id.text_spinner_reward).setVisibility(View.GONE);
+                        findViewById(R.id.spinner_reward).setVisibility(View.VISIBLE);
+                    }
+                });
+                if(chore.getDeadline() != null && !chore.getDeadline().equals("")) {
+                    ((TextView) findViewById(R.id.button_deadline)).setText(chore.getDeadline());
+                } else {
+                    ((TextView) findViewById(R.id.button_deadline)).setText(getString(R.string.set_deadline));
+                }
+                if(chore.getImgSrc() != 0) {
+                    mTaskImage.setImageResource(chore.getImgSrc());
+                } else if (chore.getImgPath() != null) {
+                    mTaskImage.setImageURI(Uri.parse(chore.getImgPath()));
+                }
                 findViewById(R.id.layout_reward_chore).setVisibility(View.VISIBLE);
                 findViewById(R.id.layout_deadline).setVisibility(View.VISIBLE);
                 findViewById(R.id.layout_reward_goal).setVisibility(View.GONE);
@@ -124,14 +149,20 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
                 onBackPressed();
                 return true;
             case R.id.save:
-
-                String user = getPreferences(Context.MODE_PRIVATE).getString(Constants.CURRENT_USER, "");
-                String coins = ((Spinner)findViewById(R.id.spinner_reward)).getSelectedItem().toString();
+                String coins = "0";
+                if (Constants.TAG.equals(Constants.TAG_CREATE_CHORE)) {
+                    coins = ((Spinner) findViewById(R.id.spinner_reward)).getSelectedItem().toString();
+                }
+                if (Constants.TAG.equals(Constants.TAG_CREATE_GOAL) || Constants.TAG.equals(Constants.TAG_CREATE_REWARD)) {
+                    coins = ((EditText) findViewById(R.id.edit_cost)).getText().toString();
+                }
+                String user = getSharedPreferences(Constants.PREFS_FILE,  MODE_PRIVATE).getString(Constants.CURRENT_USER, "");
                 String title = ((EditText)findViewById(R.id.edit_title)).getText().toString();
+                String deadline = ((Button)findViewById(R.id.button_deadline)).getText().toString();
                 if (title.equals("")) {
                     ((EditText)findViewById(R.id.edit_title)).setError("This field is required");
                 } else if (mSelectedImagePath != null){
-                    startMainActivityChoreAdded(new Chore(title, coins, user, mSelectedImagePath.toString()));
+                    startMainActivityChoreAdded(new Chore(title, coins, user, deadline, mSelectedImagePath.toString()));
                 }
                 break;
         }

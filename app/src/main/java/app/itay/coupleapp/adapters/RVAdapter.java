@@ -1,23 +1,22 @@
 package app.itay.coupleapp.adapters;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
+import app.itay.coupleapp.Constants;
 import app.itay.coupleapp.R;
 import app.itay.coupleapp.controllers.ChoresController;
 import app.itay.coupleapp.models.Chore;
@@ -28,54 +27,56 @@ import app.itay.coupleapp.models.Chore;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
 
-    private List<Chore> mPersons;
+    private List<Chore> mChores;
     private Context mContext;
     private ChoresController mController;
+    private Toolbar mToolbar;
+    private View mView;
 
     static class PersonViewHolder extends RecyclerView.ViewHolder {
-        private CardView cv;
-        private TextView personName;
-        private TextView personAge;
-        private ImageView personPhoto;
+        private TextView title;
+        private TextView coins;
+        private ImageView picture;
         private TextView subTitle;
 
         PersonViewHolder(View itemView) {
             super(itemView);
-            cv = (CardView)itemView.findViewById(R.id.chore_card_view);
-            personName = (TextView)itemView.findViewById(R.id.txt_title_chores_card);
-            personAge = (TextView)itemView.findViewById(R.id.chore_card_coins);
-            personPhoto = (ImageView)itemView.findViewById(R.id.chore_img_card_src);
+            title = (TextView)itemView.findViewById(R.id.txt_title_chores_card);
+            coins = (TextView)itemView.findViewById(R.id.chore_card_coins);
+            picture = (ImageView)itemView.findViewById(R.id.chore_img_card_src);
             subTitle=(TextView) itemView.findViewById(R.id.txt_subtitle_chores_card);
         }
     }
 
-    public RVAdapter(List<Chore> persons, Context context, ChoresController controller){
-        mPersons = persons;
+    public RVAdapter(List<Chore> chores, Context context, ChoresController controller){
+        mChores = chores;
         mContext= context;
         mController = controller;
     }
 
     @Override
     public int getItemCount() {
-        return mPersons.size();
+        return mChores.size();
     }
 
     @Override
     public PersonViewHolder onCreateViewHolder(ViewGroup viewGroup, final int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.chores_card_view, viewGroup, false);
-        Toolbar toolbar = (Toolbar) v.findViewById(R.id.chore_toolbar);
-        toolbar.inflateMenu(R.menu.menu_task_card);
+        mView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.chores_card_view, viewGroup, false);
+        mToolbar = (Toolbar) mView.findViewById(R.id.chore_toolbar);
+        mToolbar.inflateMenu(R.menu.menu_task_card);
 
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mController.startTaskActivityChoreEdit(mPersons.get(i).getTitle());
-            }
-        });
-
-        return new PersonViewHolder(v);
+        return new PersonViewHolder(mView);
     }
 
+    @Override
+    public void onBindViewHolder(PersonViewHolder personViewHolder, final int position) {
+
+        final int i = position;
+
+        personViewHolder.title.setText(mChores.get(i).getTitle());
+        personViewHolder.coins.setText(mChores.get(i).getCoins());
+        personViewHolder.subTitle.setText(String.format(mContext.getString(R.string.chore_info_created_by),
+                mChores.get(i).getCreator()));
     @Override
     public void onBindViewHolder(PersonViewHolder personViewHolder, int i) {
 
@@ -101,11 +102,44 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
 //            }
 //        });
 
-        if(mPersons.get(i).getImgSrc() != 0) {
-            personViewHolder.personPhoto.setImageResource(mPersons.get(i).getImgSrc());
-        } else if (mPersons.get(i).getImgPath() != null) {
-            personViewHolder.personPhoto.setImageURI(Uri.parse(mPersons.get(i).getImgPath()));
+        if(mChores.get(i).getImgSrc() != 0) {
+            personViewHolder.picture.setImageResource(mChores.get(i).getImgSrc());
+        } else if (mChores.get(i).getImgPath() != null) {
+            personViewHolder.picture.setImageURI(Uri.parse(mChores.get(i).getImgPath()));
         }
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.edit:
+                        mController.startTaskActivityChoreEdit(mChores.get(i));
+                        break;
+                    case R.id.delete:
+                        String user = mContext.getSharedPreferences(Constants.PREFS_FILE, Context.MODE_PRIVATE).getString(Constants.CURRENT_USER, "");
+                        if (!user.equals(mChores.get(i))) {
+                            Toast.makeText(mContext, "You cannot delete this task", Toast.LENGTH_SHORT).show();
+                        }
+                        mChores.remove(i);
+                        notifyItemRemoved(i);
+                        break;
+                    case R.id.redeem:
+                        mController.updateCoinsStatus(mChores.get(i).getCoins());
+                        mChores.remove(i);
+                        notifyItemRemoved(i);
+                        break;
+                    default:
+                        return false;
+                }
+                return false;
+            }
+        });
+
+        mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mController.startTaskActivityChoreEdit(mChores.get(i));
+            }
+        });
 
     }
 
@@ -113,4 +147,5 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
     }
+
 }

@@ -15,4 +15,6 @@ public class Constants {
     public static final String TITLE= "title";
     public static final String NEW_CHORE = "new_chore";
     public static final String CURRENT_USER = "user";
+    public static final String CHORE = "chore";
+    public static final String PREFS_FILE = "pfers";
 }
