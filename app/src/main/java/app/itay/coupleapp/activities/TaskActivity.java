@@ -6,10 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -22,7 +26,10 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -40,10 +47,50 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
 
     private Button mDeadlineButton;
 
+
+    private Bitmap bmp;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    InputStream in = null;
+                    switch (getIntent().getStringExtra(Constants.TAG)) {
+                        case Constants.TAG_CREATE_CHORE:
+                            in = new URL("http://www.clipartbest.com/cliparts/4T9/zBp/4T9zBpp8c.png").openStream();
+                            break;
+                        case Constants.TAG_CREATE_GOAL:
+                            in = new URL("https://cdn1.iconfinder.com/data/icons/multimedia-marketing/512/8-512.png").openStream();
+                            break;
+                        case Constants.TAG_CREATE_REWARD:
+                            in = new URL("https://cdn1.iconfinder.com/data/icons/the-competition/450/trophy-512.png").openStream();
+                            break;
+                    }
+                    bmp = BitmapFactory.decodeStream(in);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void result) {
+                if (bmp != null)
+                    mTaskImage.setImageBitmap(bmp);
+            }
+
+        }.execute();
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -66,7 +113,6 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
 
         switch (getIntent().getStringExtra(Constants.TAG)) {
             case Constants.TAG_CREATE_CHORE:
-                mTaskImage.setImageResource(R.drawable.new_task);
                 findViewById(R.id.layout_reward_chore).setVisibility(View.VISIBLE);
                 findViewById(R.id.layout_deadline).setVisibility(View.VISIBLE);
                 findViewById(R.id.layout_reward_goal).setVisibility(View.GONE);
@@ -155,6 +201,9 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
                 }
                 if (Constants.TAG.equals(Constants.TAG_CREATE_GOAL) || Constants.TAG.equals(Constants.TAG_CREATE_REWARD)) {
                     coins = ((EditText) findViewById(R.id.edit_cost)).getText().toString();
+                }
+                if (Constants.TAG.equals(Constants.TAG_EDIT_CHORE)) {
+                    Toast.makeText(this, "Task updated", Toast.LENGTH_SHORT).show();
                 }
                 String user = getSharedPreferences(Constants.PREFS_FILE,  MODE_PRIVATE).getString(Constants.CURRENT_USER, "");
                 String title = ((EditText)findViewById(R.id.edit_title)).getText().toString();

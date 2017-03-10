@@ -8,67 +8,26 @@ import java.io.Serializable;
  * Created by itayl on 04/03/2017.
  */
 
-public class Chore implements Serializable {
+public class Chore extends Goal {
 
-    private String mImgPath;
-    private String mTitle;
-    private String mCoins;
-    private String mCreator;
-    private int mImgSrc;
     private String mDeadline;
 
     public Chore(String mTitle, String mCoins, String mCreator, String mDeadline, int mImgSrc) {
-        this.mTitle = mTitle;
-        this.mCoins = mCoins;
-        this.mCreator = mCreator;
-        this.mImgSrc = mImgSrc;
+        super(mTitle, mCoins, mCreator, mImgSrc);
+        setDeadline(mDeadline);
     }
 
 
     public Chore(String mTitle, String mCoins, String mCreator, String mDeadline, String mImgPath) {
-        this.mTitle = mTitle;
-        this.mCoins = mCoins;
-        this.mCreator = mCreator;
-        this.mImgPath = mImgPath;
-    }
-
-    public String getTitle() {
-        return mTitle;
-    }
-
-    public void setTitle(String mTitle) {
-        this.mTitle = mTitle;
-    }
-
-    public String getCoins() {
-        return mCoins;
-    }
-
-    public void setCoins(String mCoins) {
-        this.mCoins = mCoins;
-    }
-
-    public String getCreator() {
-        return mCreator;
-    }
-
-    public void setCreator(String mCreator) {
-        this.mCreator = mCreator;
-    }
-
-    public int getImgSrc() {
-        return mImgSrc;
-    }
-
-    public void setmImgSrc(int mImgSrc) {
-        this.mImgSrc = mImgSrc;
-    }
-
-    public String getImgPath() {
-        return mImgPath;
+        super(mTitle, mCoins, mCreator, mImgPath);
+        setDeadline(mDeadline);
     }
 
     public String getDeadline() {
         return mDeadline;
+    }
+
+    public void setDeadline(String mDeadline) {
+        this.mDeadline = mDeadline;
     }
 }

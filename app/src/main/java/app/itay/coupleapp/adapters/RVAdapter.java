@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.support.v7.graphics.Palette;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -114,11 +113,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
                         break;
                     case R.id.delete:
                         String user = mContext.getSharedPreferences(Constants.PREFS_FILE, Context.MODE_PRIVATE).getString(Constants.CURRENT_USER, "");
-                        if (!user.equals(mChores.get(i))) {
+                        if (!user.equals(mChores.get(i).getCreator())) {
                             Toast.makeText(mContext, "You cannot delete this task", Toast.LENGTH_SHORT).show();
                         }
                         mChores.remove(i);
-                        notifyItemRemoved(i);
+                        notifyDataSetChanged();
                         break;
                     case R.id.redeem:
                         mController.updateCoinsStatus(mChores.get(i).getCoins());

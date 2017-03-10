@@ -20,6 +20,7 @@ import app.itay.coupleapp.R;
 import app.itay.coupleapp.adapters.SimpleFragmentPagerAdapter;
 import app.itay.coupleapp.controllers.ChoresController;
 import app.itay.coupleapp.models.Chore;
+import app.itay.coupleapp.models.Goal;
 
 
 public class MainActivity extends AppCompatActivity implements ChoresController {
@@ -45,9 +46,9 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_list_black_24dp);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_favorite_black_24dp);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_security_black_24dp);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_list_black_18dp);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_list_black_18dp);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_list_black_18dp);
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_trophy);
         ColorStateList colors;
         if (Build.VERSION.SDK_INT >= 23) {
@@ -115,10 +116,10 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
     }
 
     @Override
-    public void startTaskActivityEditGoal(String taskName) {
+    public void startTaskActivityEditGoal(Goal goal) {
         Intent intent = new Intent(this, TaskActivity.class);
         intent.putExtra(Constants.TAG, Constants.TAG_EDIT_GOAL);
-        intent.putExtra("title", taskName);
+        intent.putExtra(Constants.GOAL, goal);
         intent.putExtra("menu", R.menu.menu_edit_task);
         startActivity(intent);
     }

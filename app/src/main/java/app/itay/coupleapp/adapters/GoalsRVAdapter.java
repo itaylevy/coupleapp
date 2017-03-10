@@ -1,17 +1,23 @@
 package app.itay.coupleapp.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
+import app.itay.coupleapp.Constants;
 import app.itay.coupleapp.R;
 import app.itay.coupleapp.controllers.ChoresController;
 import app.itay.coupleapp.models.Goal;
@@ -21,9 +27,12 @@ import app.itay.coupleapp.models.Goal;
  */
 
 public class GoalsRVAdapter extends RecyclerView.Adapter<GoalsRVAdapter.GoalViewHolder>{
+
     private List<Goal> mGoals;
     private Context mContext;
     private ChoresController mController;
+    private Toolbar mToolbar;
+    private View mView;
 
     static class GoalViewHolder extends RecyclerView.ViewHolder {
         private CardView cv;
@@ -55,28 +64,92 @@ public class GoalsRVAdapter extends RecyclerView.Adapter<GoalsRVAdapter.GoalView
 
     @Override
     public GoalViewHolder onCreateViewHolder(ViewGroup viewGroup, final int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.chores_card_view, viewGroup, false);
-        Toolbar toolbar = (Toolbar) v.findViewById(R.id.chore_toolbar);
-        toolbar.inflateMenu(R.menu.menu_task_card);
+        mView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.chores_card_view, viewGroup, false);
+        mToolbar = (Toolbar) mView.findViewById(R.id.chore_toolbar);
+        mToolbar.inflateMenu(R.menu.menu_task_card);
 
-        v.setOnClickListener(new View.OnClickListener() {
+        mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mController.startTaskActivityEditGoal(mGoals.get(i).getTitle());
+                mController.startTaskActivityEditGoal(mGoals.get(i));
             }
         });
 
-        return new GoalViewHolder(v);
+        return new GoalViewHolder(mView);
     }
 
     @Override
-    public void onBindViewHolder(GoalViewHolder goalViewHolder, int i) {
+    public void onBindViewHolder(GoalViewHolder goalViewHolder, int position) {
+
+        final int i = position;
 
         goalViewHolder.goalTitle.setText(mGoals.get(i).getTitle());
         goalViewHolder.goalCoins.setText(mGoals.get(i).getCoins());
         goalViewHolder.goalImgSrc.setImageResource(mGoals.get(i).getImgSrc());
         goalViewHolder.subTitle.setText(String.format(mContext.getString(R.string.chore_info_created_by),
                 mGoals.get(i).getCreator()));
+
+        final BitmapDrawable bitmapDrawable = (BitmapDrawable) goalViewHolder.goalImgSrc.getDrawable();
+
+        Palette.generateAsync(bitmapDrawable.getBitmap(), new Palette.PaletteAsyncListener() {
+            public void onGenerated(Palette palette) {
+                Palette.Swatch vibrantSwatch = palette.getVibrantSwatch();
+                if (vibrantSwatch != null) {
+                    mContext.getResources().getDrawable(R.drawable.rectangle_background).setTint(vibrantSwatch.getPopulation());
+                }
+            }
+        });
+//        Palette.from(bitmapDrawable.getBitmap()).generate(new Palette.PaletteAsyncListener() {
+//            @Override
+//            public void onGenerated(Palette palette) {
+//                Palette.Swatch vibrantSwatch = palette.getVibrantSwatch();
+//                if (vibrantSwatch != null) {
+//                    mContext.getResources().getDrawable(R.drawable.rectangle_background).setTint(vibrantSwatch.getPopulation());
+//                }
+//            }
+//        });
+
+        if(mGoals.get(i).getImgSrc() != 0) {
+            goalViewHolder.goalImgSrc.setImageResource(mGoals.get(i).getImgSrc());
+        } else if (mGoals.get(i).getImgPath() != null) {
+            goalViewHolder.goalImgSrc.setImageURI(Uri.parse(mGoals.get(i).getImgPath()));
+        }
+
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.edit:
+                        mController.startTaskActivityEditGoal(mGoals.get(i));
+                        break;
+                    case R.id.delete:
+                        String user = mContext.getSharedPreferences(Constants.PREFS_FILE, Context.MODE_PRIVATE).getString(Constants.CURRENT_USER, "");
+                        if (!user.equals(mGoals.get(i).getCreator())) {
+                            Toast.makeText(mContext, "You cannot delete this task", Toast.LENGTH_SHORT).show();
+                        }
+                        mGoals.remove(i);
+                        notifyDataSetChanged();
+                        break;
+                    case R.id.redeem:
+                        mController.updateCoinsStatus(mGoals.get(i).getCoins());
+                        mGoals.remove(i);
+                        notifyItemRemoved(i);
+                        break;
+                    default:
+                        return false;
+                }
+                return false;
+            }
+        });
+
+        mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mController.startTaskActivityEditGoal(mGoals.get(i));
+            }
+        });
+
+
     }
 
     @Override
