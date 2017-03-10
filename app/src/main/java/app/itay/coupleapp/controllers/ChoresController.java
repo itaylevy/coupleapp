@@ -10,11 +10,17 @@ import app.itay.coupleapp.models.Goal;
 public interface ChoresController {
 
     void startTaskActivityChoreCreate();
+
     void startTaskActivityChoreEdit(Chore chore);
+
     void startTaskActivityCreateReward();
+
     void startTaskActivityEditReward(String taskName);
+
     void startTaskActivityCreateGoal();
+
     void startTaskActivityEditGoal(Goal goal);
+
     Chore getNewChore();
 
     void updateCoinsStatus(String coins);

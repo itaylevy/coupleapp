@@ -25,7 +25,7 @@ import app.itay.coupleapp.models.Chore;
  * Created by itay.levy on 3/5/2017.
  */
 
-public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
+public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> {
 
     private List<Chore> mChores;
     private Context mContext;
@@ -41,16 +41,16 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
 
         PersonViewHolder(View itemView) {
             super(itemView);
-            title = (TextView)itemView.findViewById(R.id.txt_title_chores_card);
-            coins = (TextView)itemView.findViewById(R.id.chore_card_coins);
-            picture = (ImageView)itemView.findViewById(R.id.chore_img_card_src);
-            subTitle=(TextView) itemView.findViewById(R.id.txt_subtitle_chores_card);
+            title = (TextView) itemView.findViewById(R.id.txt_title_chores_card);
+            coins = (TextView) itemView.findViewById(R.id.chore_card_coins);
+            picture = (ImageView) itemView.findViewById(R.id.chore_img_card_src);
+            subTitle = (TextView) itemView.findViewById(R.id.txt_subtitle_chores_card);
         }
     }
 
-    public RVAdapter(List<Chore> chores, Context context, ChoresController controller){
+    public RVAdapter(List<Chore> chores, Context context, ChoresController controller) {
         mChores = chores;
-        mContext= context;
+        mContext = context;
         mController = controller;
     }
 
@@ -83,28 +83,20 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
 
         Palette.generateAsync(bitmapDrawable.getBitmap(), new Palette.PaletteAsyncListener() {
             public void onGenerated(Palette palette) {
-                Palette.Swatch vibrantSwatch = palette.getVibrantSwatch();
+                final Palette.Swatch vibrantSwatch = palette.getVibrantSwatch();
                 if (vibrantSwatch != null) {
                     mContext.getResources().getDrawable(R.drawable.rectangle_background).setTint(vibrantSwatch.getPopulation());
                 }
             }
         });
-//        Palette.from(bitmapDrawable.getBitmap()).generate(new Palette.PaletteAsyncListener() {
-//            @Override
-//            public void onGenerated(Palette palette) {
-//                Palette.Swatch vibrantSwatch = palette.getVibrantSwatch();
-//                if (vibrantSwatch != null) {
-//                    mContext.getResources().getDrawable(R.drawable.rectangle_background).setTint(vibrantSwatch.getPopulation());
-//                }
-//            }
-//        });
 
-        if(mChores.get(i).getImgSrc() != 0) {
+
+        if (mChores.get(i).getImgSrc() != 0) {
             personViewHolder.picture.setImageResource(mChores.get(i).getImgSrc());
         } else if (mChores.get(i).getImgPath() != null) {
             personViewHolder.picture.setImageURI(Uri.parse(mChores.get(i).getImgPath()));
         }
-        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {

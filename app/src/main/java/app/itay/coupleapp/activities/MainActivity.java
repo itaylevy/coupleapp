@@ -1,11 +1,8 @@
 package app.itay.coupleapp.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +21,7 @@ import app.itay.coupleapp.models.Goal;
 
 
 public class MainActivity extends AppCompatActivity implements ChoresController {
+    private SimpleFragmentPagerAdapter simpleFragmentPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,26 +33,25 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
         editor.putString(Constants.CURRENT_USER, "Anonymous");
         editor.commit();
 
-
+        simpleFragmentPagerAdapter = new SimpleFragmentPagerAdapter(getSupportFragmentManager(),
+                MainActivity.this);
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
 //
 
         // Create an adapter that knows which fragment should be shown on each page
-        viewPager.setAdapter(new SimpleFragmentPagerAdapter(getSupportFragmentManager(),
-                MainActivity.this));
+        viewPager.setAdapter(simpleFragmentPagerAdapter);
         // Set the adapter onto the view pager
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_list_black_18dp);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_list_black_18dp);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_list_black_18dp);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_favorite_black_24dp);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_security_black_24dp);
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_trophy);
         ColorStateList colors;
         if (Build.VERSION.SDK_INT >= 23) {
             colors = getResources().getColorStateList(R.color.tab_icon, getTheme());
-        }
-        else {
+        } else {
             colors = getResources().getColorStateList(R.color.tab_icon);
         }
 
@@ -126,16 +123,11 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
 
     @Override
     public Chore getNewChore() {
-       return (Chore) getIntent().getSerializableExtra(Constants.NEW_CHORE);
+        return (Chore) getIntent().getSerializableExtra(Constants.NEW_CHORE);
     }
 
     @Override
     public void updateCoinsStatus(String coins) {
         Toast.makeText(this, "Congtart! You received " + coins + " coins!", Toast.LENGTH_LONG).show();
-    }
-
-    private void setupTabIcons() {
-
-
     }
 }

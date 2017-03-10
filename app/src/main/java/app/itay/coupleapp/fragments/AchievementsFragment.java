@@ -12,7 +12,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import app.itay.coupleapp.R;
+import app.itay.coupleapp.events.GoalRedeemedEvent;
 
 
 /**
@@ -27,22 +31,33 @@ public class AchievementsFragment extends Fragment {
     private ImageView sexyImage;
     private ImageView flatteringImage;
     private View v;
+
     public AchievementsFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        v=inflater.inflate(R.layout.fragment_achievements, container, false);
-        romanticImage=(ImageView) v.findViewById(R.id.img_romantic_gray);
-        spontaneousImage=(ImageView) v.findViewById(R.id.img_spontaneous_gray);
-        sexyImage=(ImageView) v.findViewById(R.id.img_sexy_gray);
-        supportiveImage=(ImageView) v.findViewById(R.id.img_supportive_gray);
-        flatteringImage=(ImageView) v.findViewById(R.id.img_flattering_gray);
-        attentiveImage=(ImageView)v.findViewById(R.id.img_attentive_gray);
+        v = inflater.inflate(R.layout.fragment_achievements, container, false);
+        romanticImage = (ImageView) v.findViewById(R.id.img_romantic_gray);
+        spontaneousImage = (ImageView) v.findViewById(R.id.img_spontaneous_gray);
+        sexyImage = (ImageView) v.findViewById(R.id.img_sexy_gray);
+        supportiveImage = (ImageView) v.findViewById(R.id.img_supportive_gray);
+        flatteringImage = (ImageView) v.findViewById(R.id.img_flattering_gray);
+        attentiveImage = (ImageView) v.findViewById(R.id.img_attentive_gray);
 
         ColorMatrix matrix = new ColorMatrix();
         matrix.setSaturation(0);
@@ -94,5 +109,15 @@ public class AchievementsFragment extends Fragment {
 
         return v;
     }
+    @Subscribe
+    public void onMessageEvent(GoalRedeemedEvent goalRedeemedEvent)
+    {
+        romanticImage.clearColorFilter();
+    }
+
 
 }
+
+
+
+

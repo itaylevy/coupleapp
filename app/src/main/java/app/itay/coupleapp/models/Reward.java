@@ -1,31 +1,29 @@
 package app.itay.coupleapp.models;
 
-import java.io.Serializable;
-
 /**
- * Created by itayl on 09/03/2017.
+ * Created by itayl on 10/03/2017.
  */
 
-public class Goal implements Serializable {
-
+public class Reward {
     protected String mImgPath;
     protected String mTitle;
     protected String mCoins;
     protected String mCreator;
     protected int mImgSrc;
-    private String imgPath;
 
-    public Goal(String mTitle, String mCoins, String mCreator, int mImgSrc) {
+    public Reward(String mImgPath, String mTitle, String mCoins, String mCreator, int mImgSrc) {
+        this.mImgPath = mImgPath;
         this.mTitle = mTitle;
         this.mCoins = mCoins;
         this.mCreator = mCreator;
         this.mImgSrc = mImgSrc;
     }
 
-    public Goal(String mTitle, String mCoins, String mCreator, String mImgPath) {
-        this.mTitle = mTitle;
-        this.mCoins = mCoins;
-        this.mCreator = mCreator;
+    public String getImgPath() {
+        return mImgPath;
+    }
+
+    public void setImgPath(String mImgPath) {
         this.mImgPath = mImgPath;
     }
 
@@ -59,17 +57,5 @@ public class Goal implements Serializable {
 
     public void setImgSrc(int mImgSrc) {
         this.mImgSrc = mImgSrc;
-    }
-
-    public String getImgPath() {
-        return mImgPath;
-    }
-
-    public void setmImgPath(String mImgPath) {
-        this.mImgPath = mImgPath;
-    }
-
-    public void setImgPath(String imgPath) {
-        this.imgPath = imgPath;
     }
 }

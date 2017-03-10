@@ -58,33 +58,21 @@ public class ChoresFragment extends Fragment {
 
         final ArrayList<Chore> chores = new ArrayList<>();
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);
-        if(getActivity().getResources().getConfiguration().screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE
-                || getActivity().getResources().getConfiguration().screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE){
+        if (getActivity().getResources().getConfiguration().screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE
+                || getActivity().getResources().getConfiguration().screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE) {
             rv.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        } else if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+        } else if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             rv.setLayoutManager(new GridLayoutManager(getContext(), 4));
-        }
-        else{
+        } else {
             rv.setLayoutManager(new GridLayoutManager(getContext(), 1));
         }
 
 //        LinearLayoutManager llm = new LinearLayoutManager(getContext());
 //        rv.setLayoutManager(llm);
-//        Bitmap image = BitmapFactory.decodeResource(getResources(),
-//                R.drawable.dishes);
-//        Palette.from(image).generate(new Palette.PaletteAsyncListener() {
-//            @Override
-//            public void onGenerated(Palette palette) {
-//                Palette.Swatch vibrantSwatch = palette.getVibrantSwatch();
-//                if (vibrantSwatch != null) {
-//                    getResources().getDrawable(R.drawable.rectangle_background).setTint(vibrantSwatch.getPopulation());
-//                }
-//            }
-//        });
-        chores.add(new Chore("Clean the dishes", "100", "itay","2", R.drawable.dishes));
-        chores.add(new Chore("Take out the garbage","20","itay", "3", R.drawable.trash));
-        chores.add(new Chore("Do laundry", "250","itay", "5", R.drawable.laundry));
-        chores.add(new Chore("Cook", "250", "itay","2", R.drawable.cook));
+        chores.add(new Chore("Clean the dishes", "100", "itay", "2", R.drawable.dishes));
+        chores.add(new Chore("Take out the garbage", "20", "itay", "3", R.drawable.trash));
+        chores.add(new Chore("Do laundry", "250", "itay", "5", R.drawable.laundry));
+        chores.add(new Chore("Cook", "250", "itay", "2", R.drawable.cook));
         if (mController.getNewChore() != null) {
             chores.add(mController.getNewChore());
         }
@@ -92,7 +80,6 @@ public class ChoresFragment extends Fragment {
         rv.setAdapter(adapter);
         return view;
     }
-
 
 
 }
