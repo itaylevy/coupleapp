@@ -8,4 +8,5 @@ import app.itay.coupleapp.models.Chore;
 
 public interface MainMenuController {
     void startMainActivityChoreAdded(Chore chore);
+    void startWebSearchActivity(Chore chore);
 }

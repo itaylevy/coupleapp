@@ -1,5 +1,6 @@
 package app.itay.coupleapp.models;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 
 import java.io.Serializable;

@@ -41,7 +41,6 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
 
     private Button mDeadlineButton;
 
-
     private Bitmap bmp;
 
     @Override
@@ -94,8 +93,7 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
         ((EditText) findViewById(R.id.edit_title)).setHint(getIntent().getStringExtra(Constants.TITLE));
 
         mTaskImage = (ImageView) findViewById(R.id.img_task_picture);
-
-        mTaskImage.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button_open_gallery).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -103,6 +101,13 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent,
                         "Select Picture"), SELECT_PICTURE);
+            }
+        });
+
+        findViewById(R.id.button_web_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startWebSearchActivity((Chore) getIntent().getSerializableExtra(Constants.CHORE));
             }
         });
 
@@ -265,4 +270,12 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
         intent.putExtra(Constants.NEW_CHORE, chore);
         startActivity(intent);
     }
+
+    @Override
+    public void startWebSearchActivity(Chore chore) {
+        Intent intent = new Intent(this, WebSearchActivity.class);
+        intent.putExtra(Constants.CHORE, chore);
+        startActivity(intent);
+    }
+
 }

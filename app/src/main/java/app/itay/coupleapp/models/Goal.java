@@ -13,6 +13,7 @@ public class Goal implements Serializable {
     protected String mCoins;
     protected String mCreator;
     protected int mImgSrc;
+    private String imgPath;
 
     public Goal(String mTitle, String mCoins, String mCreator, int mImgSrc) {
         this.mTitle = mTitle;
@@ -66,5 +67,9 @@ public class Goal implements Serializable {
 
     public void setmImgPath(String mImgPath) {
         this.mImgPath = mImgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 }

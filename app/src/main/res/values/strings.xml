@@ -24,5 +24,7 @@
     <string name="remove">Remove</string>
 
     <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="open_gallery">Open Gallery</string>
+    <string name="search_in_web">Search in web</string>
 
 </resources>
