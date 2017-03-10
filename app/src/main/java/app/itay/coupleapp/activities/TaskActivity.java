@@ -80,6 +80,7 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
             protected void onPostExecute(Void result) {
                 if (bmp != null)
                     mTaskImage.setImageBitmap(bmp);
+                    mTaskImage.setScaleType(ImageView.ScaleType.FIT_CENTER  );
             }
 
         }.execute();

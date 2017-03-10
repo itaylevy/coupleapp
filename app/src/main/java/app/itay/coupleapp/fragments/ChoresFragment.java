@@ -1,6 +1,7 @@
 package app.itay.coupleapp.fragments;
 
 
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -56,8 +58,18 @@ public class ChoresFragment extends Fragment {
 
         final ArrayList<Chore> chores = new ArrayList<>();
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv);
-        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-        rv.setLayoutManager(llm);
+        if(getActivity().getResources().getConfiguration().screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE
+                || getActivity().getResources().getConfiguration().screenLayout == Configuration.SCREENLAYOUT_SIZE_XLARGE){
+            rv.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        } else if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            rv.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        }
+        else{
+            rv.setLayoutManager(new GridLayoutManager(getContext(), 1));
+        }
+
+//        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+//        rv.setLayoutManager(llm);
 //        Bitmap image = BitmapFactory.decodeResource(getResources(),
 //                R.drawable.dishes);
 //        Palette.from(image).generate(new Palette.PaletteAsyncListener() {

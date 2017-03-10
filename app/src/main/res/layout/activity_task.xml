@@ -65,7 +65,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="225dp"
                 android:scaleType="fitStart"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="parallax"
+                />
 
             <View
                 android:layout_width="fill_parent"

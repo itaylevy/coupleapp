@@ -26,8 +26,7 @@
         <activity
             android:name=".activities.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_welcome"
-            android:theme="@style/FullscreenTheme" />
+            android:label="@string/title_activity_welcome" />
    </application>
 
 </manifest>
