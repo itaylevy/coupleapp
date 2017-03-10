@@ -44,7 +44,10 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
         tabLayout.setupWithViewPager(viewPager);
-
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_list_black_24dp);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_favorite_black_24dp);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_security_black_24dp);
+        tabLayout.getTabAt(3).setIcon(R.drawable.ic_trophy);
         ColorStateList colors;
         if (Build.VERSION.SDK_INT >= 23) {
             colors = getResources().getColorStateList(R.color.tab_icon, getTheme());
@@ -122,10 +125,5 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
     @Override
     public Chore getNewChore() {
        return (Chore) getIntent().getSerializableExtra(Constants.NEW_CHORE);
-    }
-
-    private void setupTabIcons() {
-
-
     }
 }

@@ -21,17 +21,11 @@ import app.itay.coupleapp.R;
 public class AchievementsFragment extends Fragment {
 
     private ImageView romanticImage;
-    private TextView romanticText;
     private ImageView spontaneousImage;
-    private TextView spontaneousText;
     private ImageView supportiveImage;
-    private TextView supportiveText;
     private ImageView attentiveImage;
-    private TextView attentiveText;
     private ImageView sexyImage;
-    private TextView sexyText;
     private ImageView flatteringImage;
-    private TextView flatteringText;
     private View v;
     public AchievementsFragment() {
         // Required empty public constructor
@@ -44,20 +38,58 @@ public class AchievementsFragment extends Fragment {
         // Inflate the layout for this fragment
         v=inflater.inflate(R.layout.fragment_achievements, container, false);
         romanticImage=(ImageView) v.findViewById(R.id.img_romantic_gray);
-        romanticText=(TextView) v.findViewById(R.id.romantic_text);
+        spontaneousImage=(ImageView) v.findViewById(R.id.img_spontaneous_gray);
+        sexyImage=(ImageView) v.findViewById(R.id.img_sexy_gray);
+        supportiveImage=(ImageView) v.findViewById(R.id.img_supportive_gray);
+        flatteringImage=(ImageView) v.findViewById(R.id.img_flattering_gray);
+        attentiveImage=(ImageView)v.findViewById(R.id.img_attentive_gray);
+
         ColorMatrix matrix = new ColorMatrix();
         matrix.setSaturation(0);
         ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
         romanticImage.setColorFilter(filter);
+        spontaneousImage.setColorFilter(filter);
+        attentiveImage.setColorFilter(filter);
+        sexyImage.setColorFilter(filter);
+        flatteringImage.setColorFilter(filter);
+        supportiveImage.setColorFilter(filter);
+
         romanticImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 romanticImage.clearColorFilter();
-                romanticText.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
             }
         });
-        spontaneousImage=(ImageView) v.findViewById(R.id.img_spontaneous_gray);
-
+        spontaneousImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                spontaneousImage.clearColorFilter();
+            }
+        });
+        supportiveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                supportiveImage.clearColorFilter();
+            }
+        });
+        sexyImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sexyImage.clearColorFilter();
+            }
+        });
+        flatteringImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flatteringImage.clearColorFilter();
+            }
+        });
+        attentiveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                attentiveImage.clearColorFilter();
+            }
+        });
 
 
         return v;

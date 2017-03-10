@@ -2,7 +2,11 @@ package app.itay.coupleapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.support.v7.graphics.Palette;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -77,8 +81,25 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder>{
 
         personViewHolder.personName.setText(mPersons.get(i).getTitle());
         personViewHolder.personAge.setText(mPersons.get(i).getCoins());
-        personViewHolder.subTitle.setText(String.format(mContext.getString(R.string.chore_info_created_by),
-                mPersons.get(i).getCreator()));
+        personViewHolder.subTitle.setText(mPersons.get(i).getCreator()+" hours left");
+
+        final BitmapDrawable bitmapDrawable = (BitmapDrawable) personViewHolder.personPhoto.getDrawable();
+
+        Palette.generateAsync(bitmapDrawable.getBitmap(), new Palette.PaletteAsyncListener() {
+            public void onGenerated(Palette palette) {
+                int bgColor = palette.getMutedColor(mContext.getResources().getColor(android.R.color.black));
+//                personViewHolder.personPhoto.setBackgroundColor(bgColor);
+            }
+        });
+//        Palette.from(bitmapDrawable.getBitmap()).generate(new Palette.PaletteAsyncListener() {
+//            @Override
+//            public void onGenerated(Palette palette) {
+//                Palette.Swatch vibrantSwatch = palette.getVibrantSwatch();
+//                if (vibrantSwatch != null) {
+//                    mContext.getResources().getDrawable(R.drawable.rectangle_background).setTint(vibrantSwatch.getPopulation());
+//                }
+//            }
+//        });
 
         if(mPersons.get(i).getImgSrc() != 0) {
             personViewHolder.personPhoto.setImageResource(mPersons.get(i).getImgSrc());
