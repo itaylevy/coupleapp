@@ -27,6 +27,7 @@
             android:name=".activities.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_welcome" />
-   </application>
+        <activity android:name=".activities.WebSearchActivity"></activity>
+    </application>
 
 </manifest>

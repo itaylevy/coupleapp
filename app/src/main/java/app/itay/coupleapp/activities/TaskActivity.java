@@ -2,18 +2,14 @@ package app.itay.coupleapp.activities;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -47,7 +43,6 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
 
     private Button mDeadlineButton;
 
-
     private Bitmap bmp;
 
     @Override
@@ -80,7 +75,7 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
             protected void onPostExecute(Void result) {
                 if (bmp != null)
                     mTaskImage.setImageBitmap(bmp);
-                    mTaskImage.setScaleType(ImageView.ScaleType.FIT_CENTER  );
+                mTaskImage.setScaleType(ImageView.ScaleType.FIT_CENTER);
             }
 
         }.execute();
@@ -97,11 +92,10 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        ((EditText)findViewById(R.id.edit_title)).setHint(getIntent().getStringExtra(Constants.TITLE));
+        ((EditText) findViewById(R.id.edit_title)).setHint(getIntent().getStringExtra(Constants.TITLE));
 
         mTaskImage = (ImageView) findViewById(R.id.img_task_picture);
-
-        mTaskImage.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.button_open_gallery).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
@@ -109,6 +103,13 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent,
                         "Select Picture"), SELECT_PICTURE);
+            }
+        });
+
+        findViewById(R.id.button_web_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startWebSearchActivity((Chore) getIntent().getSerializableExtra(Constants.CHORE));
             }
         });
 
@@ -123,17 +124,17 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
                 findViewById(R.id.layout_deadline).setVisibility(View.GONE);
                 findViewById(R.id.layout_reward_goal).setVisibility(View.VISIBLE);
                 break;
-            case  Constants.TAG_CREATE_REWARD:
+            case Constants.TAG_CREATE_REWARD:
                 findViewById(R.id.layout_reward_chore).setVisibility(View.GONE);
                 findViewById(R.id.layout_deadline).setVisibility(View.GONE);
                 findViewById(R.id.layout_reward_goal).setVisibility(View.VISIBLE);
                 break;
             case Constants.TAG_EDIT_CHORE:
                 Chore chore = (Chore) getIntent().getSerializableExtra(Constants.CHORE);
-                ((EditText)findViewById(R.id.edit_title)).setHint(chore.getTitle());
+                ((EditText) findViewById(R.id.edit_title)).setHint(chore.getTitle());
                 findViewById(R.id.text_spinner_reward).setVisibility(View.VISIBLE);
                 findViewById(R.id.spinner_reward).setVisibility(View.GONE);
-                ((TextView)findViewById(R.id.text_spinner_reward)).setText(chore.getCoins());
+                ((TextView) findViewById(R.id.text_spinner_reward)).setText(chore.getCoins());
                 findViewById(R.id.text_spinner_reward).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -141,12 +142,12 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
                         findViewById(R.id.spinner_reward).setVisibility(View.VISIBLE);
                     }
                 });
-                if(chore.getDeadline() != null && !chore.getDeadline().equals("")) {
+                if (chore.getDeadline() != null && !chore.getDeadline().equals("")) {
                     ((TextView) findViewById(R.id.button_deadline)).setText(chore.getDeadline());
                 } else {
                     ((TextView) findViewById(R.id.button_deadline)).setText(getString(R.string.set_deadline));
                 }
-                if(chore.getImgSrc() != 0) {
+                if (chore.getImgSrc() != 0) {
                     mTaskImage.setImageResource(chore.getImgSrc());
                 } else if (chore.getImgPath() != null) {
                     mTaskImage.setImageURI(Uri.parse(chore.getImgPath()));
@@ -206,12 +207,12 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
                 if (Constants.TAG.equals(Constants.TAG_EDIT_CHORE)) {
                     Toast.makeText(this, "Task updated", Toast.LENGTH_SHORT).show();
                 }
-                String user = getSharedPreferences(Constants.PREFS_FILE,  MODE_PRIVATE).getString(Constants.CURRENT_USER, "");
-                String title = ((EditText)findViewById(R.id.edit_title)).getText().toString();
-                String deadline = ((Button)findViewById(R.id.button_deadline)).getText().toString();
+                String user = getSharedPreferences(Constants.PREFS_FILE, MODE_PRIVATE).getString(Constants.CURRENT_USER, "");
+                String title = ((EditText) findViewById(R.id.edit_title)).getText().toString();
+                String deadline = ((Button) findViewById(R.id.button_deadline)).getText().toString();
                 if (title.equals("")) {
-                    ((EditText)findViewById(R.id.edit_title)).setError("This field is required");
-                } else if (mSelectedImagePath != null){
+                    ((EditText) findViewById(R.id.edit_title)).setError("This field is required");
+                } else if (mSelectedImagePath != null) {
                     startMainActivityChoreAdded(new Chore(title, coins, user, deadline, mSelectedImagePath.toString()));
                 }
                 break;
@@ -223,14 +224,11 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
-                if(resultCode == RESULT_CANCELED)
-                {
+                if (resultCode == RESULT_CANCELED) {
                     // action cancelled
-                }
-                else if(resultCode == RESULT_OK)
-                {
+                } else if (resultCode == RESULT_OK) {
                     mSelectedImagePath = data.getData();
-                    ((ImageView)findViewById(R.id.img_task_picture)).setImageURI(mSelectedImagePath);
+                    ((ImageView) findViewById(R.id.img_task_picture)).setImageURI(mSelectedImagePath);
                 }
             }
         }
@@ -274,4 +272,12 @@ public class TaskActivity extends AppCompatActivity implements MainMenuControlle
         intent.putExtra(Constants.NEW_CHORE, chore);
         startActivity(intent);
     }
+
+    @Override
+    public void startWebSearchActivity(Chore chore) {
+        Intent intent = new Intent(this, WebSearchActivity.class);
+        intent.putExtra(Constants.CHORE, chore);
+        startActivity(intent);
+    }
+
 }

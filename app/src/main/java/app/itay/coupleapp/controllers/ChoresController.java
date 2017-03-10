@@ -8,6 +8,7 @@ import app.itay.coupleapp.models.Goal;
  */
 
 public interface ChoresController {
+
     void startTaskActivityChoreCreate();
     void startTaskActivityChoreEdit(Chore chore);
     void startTaskActivityCreateReward();
