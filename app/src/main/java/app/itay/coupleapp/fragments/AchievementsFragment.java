@@ -27,6 +27,7 @@ public class AchievementsFragment extends Fragment {
     private ImageView sexyImage;
     private ImageView flatteringImage;
     private View v;
+
     public AchievementsFragment() {
         // Required empty public constructor
     }
@@ -36,13 +37,13 @@ public class AchievementsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        v=inflater.inflate(R.layout.fragment_achievements, container, false);
-        romanticImage=(ImageView) v.findViewById(R.id.img_romantic_gray);
-        spontaneousImage=(ImageView) v.findViewById(R.id.img_spontaneous_gray);
-        sexyImage=(ImageView) v.findViewById(R.id.img_sexy_gray);
-        supportiveImage=(ImageView) v.findViewById(R.id.img_supportive_gray);
-        flatteringImage=(ImageView) v.findViewById(R.id.img_flattering_gray);
-        attentiveImage=(ImageView)v.findViewById(R.id.img_attentive_gray);
+        v = inflater.inflate(R.layout.fragment_achievements, container, false);
+        romanticImage = (ImageView) v.findViewById(R.id.img_romantic_gray);
+        spontaneousImage = (ImageView) v.findViewById(R.id.img_spontaneous_gray);
+        sexyImage = (ImageView) v.findViewById(R.id.img_sexy_gray);
+        supportiveImage = (ImageView) v.findViewById(R.id.img_supportive_gray);
+        flatteringImage = (ImageView) v.findViewById(R.id.img_flattering_gray);
+        attentiveImage = (ImageView) v.findViewById(R.id.img_attentive_gray);
 
         ColorMatrix matrix = new ColorMatrix();
         matrix.setSaturation(0);

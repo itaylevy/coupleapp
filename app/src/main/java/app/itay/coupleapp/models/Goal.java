@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by itayl on 09/03/2017.
  */
 
-public class Goal implements Serializable{
+public class Goal implements Serializable {
 
     protected String mImgPath;
     protected String mTitle;
