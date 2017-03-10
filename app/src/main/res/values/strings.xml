@@ -23,4 +23,6 @@
     <string name="set_deadline">Set deadline</string>
     <string name="remove">Remove</string>
 
+    <string name="title_activity_welcome">WelcomeActivity</string>
+
 </resources>
