@@ -32,7 +32,6 @@
             android:id="@+id/txt_title_chores_card"
             style="@style/MyChoresTitleTextAppearance"
             android:layout_gravity="start"
-
              />
 
         <TextView
