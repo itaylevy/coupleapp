@@ -1,14 +1,9 @@
 <resources>
-    <string name="app_name">coupleapp</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">CoupleApp</string>
 
     <string name="chore_deadline"> hours left</string>
     <string name="reward_created_by">Created by</string>
     <string name="new_chore_title">Add task</string>
-    <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
     <string name="title_activity_chore">ChoreActivity</string>
     <string-array name="rewards">
         <item>100</item>
@@ -18,21 +13,29 @@
     </string-array>
     <string name="action_settings">Settings</string>
     <string name="save">Save</string>
-    <string name="redeem">Redeem</string>
     <string name="enter_cost">Enter cost:</string>
     <string name="enter_reward">Assign reward for this task: </string>
     <string name="set_deadline">Set deadline</string>
     <string name="remove">Remove</string>
-
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="open_gallery">Open Gallery</string>
     <string name="search_in_web">Search in web</string>
+
+    <!--menu_card_options-->
+    <string name="redeem">Redeem</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+
+    <!--badge_dialog_xml -->
     <string name="badge_dialog_title">Congratulations!</string>
-    <string name="accessibility_badge_romantic_text">Romantic Badge</string>
     <string name="badge_dialog_body_text">You have unlocked the\n Romantic badge</string>
     <string name="cta_badge_dialog">DONE</string>
-    <string name="accessibility_coins_main_activity">Coins</string>
+
+    <!--main_activity_xml -->
     <string name="man_coins">100</string>
     <string name="woman_coins">200</string>
 
+    <!--Accessibility strings -->
+    <string name="accessibility_badge_romantic_text">Romantic Badge</string>
+    <string name="accessibility_coins_main_activity">Coins</string>
 </resources>
