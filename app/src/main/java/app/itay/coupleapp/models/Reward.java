@@ -11,8 +11,7 @@ public class Reward {
     protected String mCreator;
     protected int mImgSrc;
 
-    public Reward(String mImgPath, String mTitle, String mCoins, String mCreator, int mImgSrc) {
-        this.mImgPath = mImgPath;
+    public Reward(String mTitle, String mCoins, String mCreator, int mImgSrc) {
         this.mTitle = mTitle;
         this.mCoins = mCoins;
         this.mCreator = mCreator;

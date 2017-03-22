@@ -32,6 +32,7 @@ import app.itay.coupleapp.R;
 import app.itay.coupleapp.controllers.ChoresController;
 import app.itay.coupleapp.models.Chore;
 import app.itay.coupleapp.models.Goal;
+import app.itay.coupleapp.models.Reward;
 import app.itay.coupleapp.models.WebPicture;
 
 import static android.R.attr.path;
@@ -179,7 +180,7 @@ public class WebSearchActivity extends AppCompatActivity implements ChoresContro
     }
 
     @Override
-    public void startTaskActivityEditReward(String taskName) {
+    public void startTaskActivityEditReward(Reward reward) {
 
     }
 

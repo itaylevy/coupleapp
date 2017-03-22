@@ -13,6 +13,9 @@ public class Goal implements Serializable {
     protected String mCoins;
     protected String mCreator;
     protected int mImgSrc;
+
+
+    protected int badge;
     private String imgPath;
 
     public Goal(String mTitle, String mCoins, String mCreator, int mImgSrc) {
@@ -20,6 +23,13 @@ public class Goal implements Serializable {
         this.mCoins = mCoins;
         this.mCreator = mCreator;
         this.mImgSrc = mImgSrc;
+    }
+
+    public Goal(String mTitle, String mCoins, int badge,int mImgSrc) {
+        this.mTitle = mTitle;
+        this.mCoins = mCoins;
+        this.mImgSrc = mImgSrc;
+        this.badge = badge;
     }
 
     public Goal(String mTitle, String mCoins, String mCreator, String mImgPath) {
@@ -39,6 +49,10 @@ public class Goal implements Serializable {
 
     public String getCoins() {
         return mCoins;
+    }
+
+    public int getBadge() {
+        return badge;
     }
 
     public void setCoins(String mCoins) {

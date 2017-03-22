@@ -15,8 +15,8 @@
 
         <ImageView
             android:id="@+id/womanAvatar"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:layout_marginEnd="96dp"
             android:layout_marginStart="200dp"
             android:layout_marginTop="16dp"
@@ -28,8 +28,8 @@
 
         <ImageView
             android:id="@+id/manAvatar"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:layout_marginEnd="200dp"
             android:layout_marginStart="96dp"
             android:layout_marginTop="16dp"

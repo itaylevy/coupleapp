@@ -52,10 +52,8 @@ public class GoalsFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
 
-        goals.add(new Goal("Be Romantic", "100", "Shiran", R.drawable.dishes));
-        goals.add(new Goal("Be Spontaneous", "300", "Shiran", R.drawable.trash));
-        goals.add(new Goal("Be Supportive", "250", "Shiran", R.drawable.laundry));
-        goals.add(new Goal("Be Attentive", "350", "Shiran", R.drawable.cook));
+        goals.add(new Goal("Foot massage","750",R.drawable.sexy,R.drawable.foot));
+        goals.add(new Goal("Romantic dinner","300",R.drawable.romantic,R.drawable.cook));
         GoalsRVAdapter adapter = new GoalsRVAdapter(goals, getContext(), mController);
         rv.setAdapter(adapter);
         return view;

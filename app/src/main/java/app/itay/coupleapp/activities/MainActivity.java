@@ -12,12 +12,15 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import java.io.Serializable;
+
 import app.itay.coupleapp.Constants;
 import app.itay.coupleapp.R;
 import app.itay.coupleapp.adapters.SimpleFragmentPagerAdapter;
 import app.itay.coupleapp.controllers.ChoresController;
 import app.itay.coupleapp.models.Chore;
 import app.itay.coupleapp.models.Goal;
+import app.itay.coupleapp.models.Reward;
 
 
 public class MainActivity extends AppCompatActivity implements ChoresController {
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_list_black_18dp);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_list_black_24dp);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_favorite_black_24dp);
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_security_black_24dp);
         tabLayout.getTabAt(3).setIcon(R.drawable.ic_trophy);
@@ -95,10 +98,10 @@ public class MainActivity extends AppCompatActivity implements ChoresController 
     }
 
     @Override
-    public void startTaskActivityEditReward(String taskName) {
+    public void startTaskActivityEditReward(Reward reward) {
         Intent intent = new Intent(this, TaskActivity.class);
         intent.putExtra(Constants.TAG, Constants.TAG_EDIT_REWARD);
-        intent.putExtra("title", taskName);
+        intent.putExtra(Constants.TITLE, (Serializable) reward);
         intent.putExtra("menu", R.menu.menu_edit_task);
         startActivity(intent);
     }

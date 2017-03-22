@@ -75,8 +75,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 
         personViewHolder.title.setText(mChores.get(i).getTitle());
         personViewHolder.coins.setText(mChores.get(i).getCoins());
-        personViewHolder.subTitle.setText(String.format(mContext.getString(R.string.chore_info_created_by),
-                mChores.get(i).getCreator()));
+        personViewHolder.subTitle.setText(String.format(mChores.get(i).getDeadline()+" "+
+                mContext.getString(R.string.chore_deadline)));
 
 
         final BitmapDrawable bitmapDrawable = (BitmapDrawable) personViewHolder.picture.getDrawable();
