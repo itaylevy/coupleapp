@@ -64,5 +64,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="16dp"
         android:background="@color/colorPrimary"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/colorPrimaryDark"
+        android:shadowColor="#3d000000"
+        android:shadowDx="0"
+        android:shadowDy="2"
+        
+        />
 </android.support.constraint.ConstraintLayout>
