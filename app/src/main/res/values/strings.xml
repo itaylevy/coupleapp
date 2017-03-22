@@ -27,5 +27,12 @@
     <string name="title_activity_welcome">WelcomeActivity</string>
     <string name="open_gallery">Open Gallery</string>
     <string name="search_in_web">Search in web</string>
+    <string name="badge_dialog_title">Congratulations!</string>
+    <string name="accessibility_badge_romantic_text">Romantic Badge</string>
+    <string name="badge_dialog_body_text">You have unlocked the\n Romantic badge</string>
+    <string name="cta_badge_dialog">DONE</string>
+    <string name="accessibility_coins_main_activity">Coins</string>
+    <string name="man_coins">100</string>
+    <string name="woman_coins">200</string>
 
 </resources>
