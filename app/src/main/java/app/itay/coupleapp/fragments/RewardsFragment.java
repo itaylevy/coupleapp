@@ -53,7 +53,7 @@ public class RewardsFragment extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         rv.setLayoutManager(llm);
 
-        rewards.add(new Reward("Beer with friends", "1500", "Itay", R.drawable.beer));
+        rewards.add(new Reward("Beer with friends", "1500", "Itay", R.drawable.shopping));
         rewards.add(new Reward("Shopping", "2500", "Shiran", R.drawable.shopping));
         rewards.add(new Reward("Vacation in Paris", "6000", "Shiran", R.drawable.paris1));
         rewards.add(new Reward("Playstation", "1000", "Itay", R.drawable.playstaion));
