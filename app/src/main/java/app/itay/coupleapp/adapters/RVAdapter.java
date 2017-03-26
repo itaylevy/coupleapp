@@ -81,14 +81,14 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 
         final BitmapDrawable bitmapDrawable = (BitmapDrawable) personViewHolder.picture.getDrawable();
 
-        Palette.generateAsync(bitmapDrawable.getBitmap(), new Palette.PaletteAsyncListener() {
-            public void onGenerated(Palette palette) {
-                final Palette.Swatch vibrantSwatch = palette.getVibrantSwatch();
-                if (vibrantSwatch != null) {
-                    mContext.getResources().getDrawable(R.drawable.rectangle_background).setTint(vibrantSwatch.getPopulation());
-                }
-            }
-        });
+//        Palette.generateAsync(bitmapDrawable.getBitmap(), new Palette.PaletteAsyncListener() {
+//            public void onGenerated(Palette palette) {
+//                final Palette.Swatch vibrantSwatch = palette.getVibrantSwatch();
+//                if (vibrantSwatch != null) {
+//                    mContext.getResources().getDrawable(R.drawable.rectangle_background).setTint(vibrantSwatch.getPopulation());
+//                }
+//            }
+//        });
 
 
         if (mChores.get(i).getImgSrc() != 0) {
