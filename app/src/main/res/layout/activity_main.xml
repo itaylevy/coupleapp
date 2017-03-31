@@ -6,16 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context="app.itay.coupleapp.activities.MainActivity">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="150dp"
+        android:background="@color/colorPrimary">
 
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/womanAvatar"
             android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_height="85dp"
             android:layout_marginEnd="96dp"
             android:layout_marginStart="200dp"
             android:layout_marginTop="16dp"
@@ -23,7 +25,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:civ_border_color="@color/colorAccent"
+            app:civ_border_color="@color/colorPrimaryDark"
             app:civ_border_width="2dp"
             app:civ_shadow="true"
             app:civ_shadow_radius="10"
@@ -32,7 +34,7 @@
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/manAvatar"
             android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_height="85dp"
             android:src="@drawable/itay"
             android:layout_marginStart="96dp"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -40,7 +42,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginTop="16dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:civ_border_color="@color/colorAccent"
+            app:civ_border_color="@color/colorPrimaryDark"
             app:civ_border_width="2dp"
             app:civ_shadow="true"
             app:civ_shadow_radius="10"
@@ -57,7 +59,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/coin1" />
+            app:srcCompat="@drawable/coins" />
 
         <ImageView
             android:contentDescription="@string/accessibility_coins_main_activity"
@@ -70,7 +72,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/coin1" />
+            app:srcCompat="@drawable/coins" />
 
         <TextView
             android:text="@string/man_coins"
@@ -81,10 +83,9 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginEnd="200dp"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginStart="120dp"
+            android:layout_marginStart="100dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintHorizontal_bias="0.4"
-            android:textStyle="normal|bold"
             android:textColor="@android:color/black" />
 
         <TextView
@@ -92,9 +93,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
-            android:textStyle="normal|bold"
             android:textColor="@android:color/black"
-            android:layout_marginEnd="120dp"
+            android:layout_marginEnd="100dp"
             app:layout_constraintRight_toRightOf="parent"
             android:layout_marginStart="200dp"
             app:layout_constraintLeft_toLeftOf="parent"
