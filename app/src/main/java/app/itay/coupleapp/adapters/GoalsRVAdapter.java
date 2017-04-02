@@ -100,7 +100,7 @@ public class GoalsRVAdapter extends RecyclerView.Adapter<GoalsRVAdapter.GoalView
 //        goalViewHolder.subTitle.setText(String.format(mContext.getString(R.string.reward_created_by)+" "+
 //                mGoals.get(i).getCreator()));
 
-        final BitmapDrawable bitmapDrawable = (BitmapDrawable) goalViewHolder.goalImgSrc.getDrawable();
+//        final BitmapDrawable bitmapDrawable = (BitmapDrawable) goalViewHolder.goalImgSrc.getDrawable();
 
 
         final Dialog dialog = new Dialog(mContext);

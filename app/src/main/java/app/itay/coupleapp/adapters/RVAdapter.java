@@ -1,7 +1,10 @@
 package app.itay.coupleapp.adapters;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +42,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
         private TextView coins;
         private ImageView picture;
         private TextView subTitle;
+        private TextView coinsDialog;
 
         PersonViewHolder(View itemView) {
             super(itemView);
@@ -45,6 +50,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
             coins = (TextView) itemView.findViewById(R.id.chore_card_coins);
             picture = (ImageView) itemView.findViewById(R.id.chore_img_card_src);
             subTitle = (TextView) itemView.findViewById(R.id.txt_subtitle_chores_card);
+            coinsDialog=(TextView) itemView.findViewById(R.id.id_text_coins_dialog);
         }
     }
 
@@ -69,7 +75,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(PersonViewHolder personViewHolder, final int position) {
+    public void onBindViewHolder(final PersonViewHolder personViewHolder, final int position) {
 
         final int i = position;
 
@@ -90,7 +96,11 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
 //            }
 //        });
 
-
+        final Dialog dialog = new Dialog(mContext);
+        dialog.setContentView(R.layout.coins_dialog);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.getWindow().getAttributes().windowAnimations = R.style.PauseDialogAnimation;
+        dialog.getWindow().setGravity(Window.FEATURE_ACTION_BAR);
         if (mChores.get(i).getImgSrc() != 0) {
             personViewHolder.picture.setImageResource(mChores.get(i).getImgSrc());
         } else if (mChores.get(i).getImgPath() != null) {
@@ -112,6 +122,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
                         notifyDataSetChanged();
                         break;
                     case R.id.redeem:
+
+                        dialog.show();
                         mController.updateCoinsStatus(mChores.get(i).getCoins());
                         mChores.remove(i);
                         notifyItemRemoved(i);
